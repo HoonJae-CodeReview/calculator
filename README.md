@@ -14,6 +14,16 @@
 ### 스트림과 람다를 활용하기
 - 스트림과 람다를 사용 할 수 있는 건 스트림과 람다를 사용해서 구현하기.
 
+### AngularJS Commit Message Conventions 중
+### commit message 종류를 다음과 같이 구분
+- feat (feature)
+- fix (bug fix)
+- docs (documentation)
+- style (formatting, missing semi colons, …)
+- refactor
+- test (when adding missing tests)
+- chore (maintain)
+
 ### 요구사항
 - 콘솔로 구현입니다.(스윙으로 구현하시는 분들 계실까봐) 
 - 객체지향적인 코드로 계산기 구현하기
@@ -26,6 +36,7 @@
 - [ ]  계산 이력을 맵으로 데이터 저장기능 만들기
     - 애플리케이션이 동작하는 동안 데이터베이스 외에 데이터를 저장할 수 있는 방법을 고안해보세요.
 - (선택) 정규식 사용
+- 가능하면 단위 테스트도 작성하기.
 
 ### 실행결과(콘솔)
 ```
