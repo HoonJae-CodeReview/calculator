@@ -24,6 +24,8 @@
 - test (when adding missing tests)
 - chore (maintain)
 
+### gitignore 반영
+- https://gitignore.io/ 에 접속해서 필요한 부분 ignore 반영, gradle, maven, intellij, macOS, window 등등
 ### 요구사항
 - 콘솔로 구현입니다.(스윙으로 구현하시는 분들 계실까봐) 
 - 객체지향적인 코드로 계산기 구현하기
