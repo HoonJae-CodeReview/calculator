@@ -11,4 +11,8 @@ public class Repository {
         result.add(expression);
     }
 
+    public List<String> getResult(){
+        return result;
+    }
+
 }
