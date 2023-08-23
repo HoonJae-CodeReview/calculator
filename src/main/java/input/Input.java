@@ -24,5 +24,9 @@ public class Input {
 
     }
 
+    public void expression() throws  IOException{
+        expression = bufferedReader.readLine();
+    }
+
 
 }
