@@ -30,7 +30,13 @@ public class Calculator {
     }
 
     private void showMenu(){
-        System.out.print("1. 조회\n2. 계산\n\n선택 : ");
+        StringBuilder stringBuilder = new StringBuilder();
+        int menuItemCnt = MenuItems.length;
+        for(int i=0; i<menuItemCnt; i++){
+            stringBuilder.append(i+1).append(". ").append(MenuItems[i].title).append('\n');
+        }
+        stringBuilder.append("\n선택 : ");
+        System.out.print(stringBuilder);
     }
 
     private void addHistory(String expression, long result){
