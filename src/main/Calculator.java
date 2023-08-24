@@ -14,9 +14,7 @@ public class Calculator {
 
     public void run() throws IOException {
         showMenu();
-        String input = this.bufferedReader.readLine();
-        System.out.println();
-        switch(input){
+        switch(selectMenu()){
             case "1" :
                 displayHistory();
                 break;
@@ -30,7 +28,14 @@ public class Calculator {
     }
 
     private void showMenu(){
-        System.out.print("1. 조회\n2. 계산\n\n선택 : ");
+        System.out.println("1. 조회\n2. 계산\n");
+    }
+
+    private String selectMenu() throws IOException {
+        System.out.print("선택 : ");
+        String input = this.bufferedReader.readLine();
+        System.out.println();
+        return input;
     }
 
     private void addHistory(String expression, long result){
