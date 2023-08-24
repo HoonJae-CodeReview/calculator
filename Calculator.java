@@ -86,6 +86,5 @@ public class Calculator {
                 addHistory(expression, result);
                 break;
         }
-        run();
     }
 }
