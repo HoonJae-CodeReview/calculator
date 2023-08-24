@@ -5,10 +5,9 @@ import java.util.*;
 
 public class Calculator {
 
-    ArrayList<String> History = new ArrayList<>();
+    ArrayList<String> history = new ArrayList<>();
     BufferedReader bufferedReader;
-
-    MenuItem[] MenuItems = {
+    MenuItem[] menuItems = {
             new MenuItem("조회", () -> this.displayHistory()),
             new MenuItem("계산", () -> {
                 String expression = this.input();
@@ -26,14 +25,14 @@ public class Calculator {
         showMenu();
         int selectedMenu = Integer.parseInt(input());
         System.out.println();
-        MenuItems[selectedMenu - 1].operation.run();
+        menuItems[selectedMenu - 1].operation.run();
     }
 
     private void showMenu(){
         StringBuilder stringBuilder = new StringBuilder();
-        int menuItemCnt = MenuItems.length;
+        int menuItemCnt = menuItems.length;
         for(int i=0; i<menuItemCnt; i++){
-            stringBuilder.append(i+1).append(". ").append(MenuItems[i].title).append('\n');
+            stringBuilder.append(i+1).append(". ").append(menuItems[i].title).append('\n');
         }
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
@@ -42,14 +41,14 @@ public class Calculator {
     private void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(expression).append(" = ").append(result);
-        this.History.add(stringBuilder.toString());
+        this.history.add(stringBuilder.toString());
     }
 
     private void displayHistory(){
-        if(this.History.size()==0) return;
+        if(this.history.size()==0) return;
 
         StringBuilder stringBuilder = new StringBuilder();
-        this.History.forEach((history -> stringBuilder.append(history).append('\n')));
+        this.history.forEach((string -> stringBuilder.append(string).append('\n')));
         System.out.println(stringBuilder);
     }
 
