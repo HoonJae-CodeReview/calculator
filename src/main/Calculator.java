@@ -29,7 +29,7 @@ public class Calculator {
         }
     }
 
-    public void showMenu(){
+    private void showMenu(){
         System.out.print("1. 조회\n2. 계산\n\n선택 : ");
     }
 
@@ -45,7 +45,7 @@ public class Calculator {
         System.out.println(stringBuilder);
     }
 
-    public long calculate(String expression){
+    private long calculate(String expression){
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
 
         long resultValue = 0;
