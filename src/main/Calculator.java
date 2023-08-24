@@ -14,12 +14,15 @@ public class Calculator {
 
     public void run() throws IOException {
         showMenu();
-        switch(selectMenu()){
-            case "1" :
+        int selectedMenu = Integer.parseInt(input());
+        System.out.println();
+
+        switch(selectedMenu){
+            case 1 :
                 displayHistory();
                 break;
-            case "2" :
-                String expression = this.bufferedReader.readLine();
+            case 2 :
+                String expression = input();
                 long result = calculate(expression);
                 System.out.println("\n" + result + "\n");
                 addHistory(expression, result);
@@ -28,14 +31,7 @@ public class Calculator {
     }
 
     private void showMenu(){
-        System.out.println("1. 조회\n2. 계산\n");
-    }
-
-    private String selectMenu() throws IOException {
-        System.out.print("선택 : ");
-        String input = this.bufferedReader.readLine();
-        System.out.println();
-        return input;
+        System.out.print("1. 조회\n2. 계산\n\n선택 : ");
     }
 
     private void addHistory(String expression, long result){
@@ -100,4 +96,7 @@ public class Calculator {
         return resultValue;
     }
 
+    private String input() throws IOException {
+        return this.bufferedReader.readLine();
+    }
 }
