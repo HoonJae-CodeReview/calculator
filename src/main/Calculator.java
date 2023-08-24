@@ -7,18 +7,22 @@ public class Calculator {
 
     ArrayList<String> history = new ArrayList<>();
     BufferedReader bufferedReader;
-    MenuItem[] menuItems = {
-            new MenuItem("조회", () -> this.displayHistory()),
-            new MenuItem("계산", () -> {
-                String expression = this.input();
-                long result = calculate(expression);
-                System.out.println("\n" + result + "\n");
-                addHistory(expression, result);
-            })
-    };
+    MenuItem[] menuItems;
 
     public Calculator(BufferedReader bufferedReader){
         this.bufferedReader = bufferedReader;
+        initMenuItems();
+    }
+    private void initMenuItems(){
+        menuItems = new MenuItem[] {
+                new MenuItem("조회", () -> this.displayHistory()),
+                new MenuItem("계산", () -> {
+                    String expression = this.input();
+                    long result = calculate(expression);
+                    System.out.println("\n" + result + "\n");
+                    addHistory(expression, result);
+                })
+        };
     }
 
     public void run() {
