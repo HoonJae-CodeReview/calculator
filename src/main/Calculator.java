@@ -25,7 +25,6 @@ public class Calculator {
         showMenu();
         menuItems[selectMenuItemIndex()].operation.run();
     }
-
     private void showMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         int menuItemCnt = menuItems.length;
@@ -35,13 +34,17 @@ public class Calculator {
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
     }
+    private int selectMenuItemIndex(){
+        int selectedMenu = Integer.parseInt(input());
+        System.out.println();
+        return selectedMenu - 1;
+    }
 
     private void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(expression).append(" = ").append(result);
         this.history.add(stringBuilder.toString());
     }
-
     private void displayHistory(){
         if(this.history.size()==0) return;
 
@@ -96,12 +99,6 @@ public class Calculator {
         }
 
         return resultValue;
-    }
-
-    private int selectMenuItemIndex(){
-        int selectedMenu = Integer.parseInt(input());
-        System.out.println();
-        return selectedMenu - 1;
     }
 
     private String input() {
