@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class Calculator {
+
+    ArrayList<String> History = new ArrayList<>();
+
     public void showMenu(){
         System.out.print("1. 조회\n2. 계산\n\n선택 : ");
     }
