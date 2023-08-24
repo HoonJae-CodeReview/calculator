@@ -4,8 +4,8 @@ public class Calculator {
     public void showMenu(){
         System.out.print("1. 조회\n2. 계산\n\n선택 : ");
     }
-    public long calculate(String string){
-        StringTokenizer stringTokenizer = new StringTokenizer(string);
+    public long calculate(String expression){
+        StringTokenizer stringTokenizer = new StringTokenizer(expression);
 
         long resultValue = 0;
 
