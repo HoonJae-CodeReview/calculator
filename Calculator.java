@@ -60,4 +60,9 @@ public class Calculator {
         stringBuilder.append(expression).append(" = ").append(result);
         this.History.add(stringBuilder.toString());
     }
+    private void displayHistory(){
+        StringBuilder stringBuilder = new StringBuilder();
+        History.forEach((history -> stringBuilder.append(history).append('\n')));
+        System.out.println(stringBuilder);
+    }
 }
