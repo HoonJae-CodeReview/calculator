@@ -63,44 +63,30 @@ public class Calculator {
         long resultValue = 0;
 
         long currentValue = Long.parseLong(stringTokenizer.nextToken());
-        String currentSymbol = "+";
+        char currentSymbol = '+';
 
         while(stringTokenizer.hasMoreTokens()){
-            String nextSymbol = stringTokenizer.nextToken();
+            char nextSymbol = stringTokenizer.nextToken().charAt(0);
             long nextValue = Long.parseLong(stringTokenizer.nextToken());
 
-//            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextSymbol,nextValue,resultValue,currentSymbol,currentValue,nextSymbol,nextValue);
+            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextSymbol,nextValue,resultValue,currentSymbol,currentValue,nextSymbol,nextValue);
 
             switch(nextSymbol){
-                case "+" :
-                    switch(currentSymbol){
-                        case "+" : resultValue += currentValue; break;
-                        case "-" : resultValue -= currentValue; break;
-                    }
+                case '+' :
+                case '-' :
+                    resultValue = calculateBySymbol(resultValue, currentValue, currentSymbol);  // 덧셈이나 뺄셈만 수행
                     currentValue = nextValue;
-                    currentSymbol = "+";
+                    currentSymbol = nextSymbol;
                     break;
-                case "-" :
-                    switch(currentSymbol){
-                        case "+" : resultValue += currentValue; break;
-                        case "-" : resultValue -= currentValue; break;
-                    }
-                    currentValue = nextValue;
-                    currentSymbol = "-";
+                case '*' :
+                case '/' :
+                    currentValue = calculateBySymbol(currentValue, nextValue, nextSymbol);
                     break;
-                case "*" :
-                    currentValue *= nextValue;
-                    break;
-                case "/" :
-                    currentValue /= nextValue;
-                    break;
+                default:
+                    //err
             }
         }
-
-        switch(currentSymbol){
-            case "+" : resultValue += currentValue; break;
-            case "-" : resultValue -= currentValue; break;
-        }
+        resultValue = calculateBySymbol(resultValue, currentValue, currentSymbol);  // 덧셈이나 뺄셈만 수행
 
         return resultValue;
     }
