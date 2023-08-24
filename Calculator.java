@@ -54,4 +54,10 @@ public class Calculator {
 
         return resultValue;
     }
+
+    private void addHistory(String expression, long result){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(expression).append(" = ").append(result);
+        this.History.add(stringBuilder.toString());
+    }
 }
