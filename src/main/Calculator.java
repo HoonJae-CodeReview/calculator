@@ -26,18 +26,7 @@ public class Calculator {
         showMenu();
         int selectedMenu = Integer.parseInt(input());
         System.out.println();
-
-        switch(selectedMenu){
-            case 1 :
-                displayHistory();
-                break;
-            case 2 :
-                String expression = input();
-                long result = calculate(expression);
-                System.out.println("\n" + result + "\n");
-                addHistory(expression, result);
-                break;
-        }
+        MenuItems[selectedMenu - 1].operation.run();
     }
 
     private void showMenu(){
