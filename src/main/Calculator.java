@@ -104,6 +104,15 @@ public class Calculator {
 
         return resultValue;
     }
+    private long calculateBySymbol(long value1, long value2, char Operator){
+        switch(Operator){
+            case '+' : return value1 + value2;
+            case '-' : return value1 - value2;
+            case '*' : return value1 * value2;
+            case '/' : return value1 / value2;
+            default: return Long.MIN_VALUE;
+        }
+    }
 
     private String input() {
         try{
