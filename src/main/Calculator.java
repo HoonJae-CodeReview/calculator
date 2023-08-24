@@ -12,7 +12,7 @@ public class Calculator {
         this.bufferedReader = bufferedReader;
     }
 
-    public void run() throws IOException {
+    public void run() {
         showMenu();
         int selectedMenu = Integer.parseInt(input());
         System.out.println();
@@ -96,7 +96,12 @@ public class Calculator {
         return resultValue;
     }
 
-    private String input() throws IOException {
-        return this.bufferedReader.readLine();
+    private String input() {
+        try{
+            return this.bufferedReader.readLine();
+        }
+        catch(IOException e){
+            return "";
+        }
     }
 }
