@@ -23,9 +23,7 @@ public class Calculator {
 
     public void run() {
         showMenu();
-        int selectedMenu = Integer.parseInt(input());
-        System.out.println();
-        menuItems[selectedMenu - 1].operation.run();
+        menuItems[selectMenuItemIndex()].operation.run();
     }
 
     private void showMenu(){
@@ -98,6 +96,12 @@ public class Calculator {
         }
 
         return resultValue;
+    }
+
+    private int selectMenuItemIndex(){
+        int selectedMenu = Integer.parseInt(input());
+        System.out.println();
+        return selectedMenu - 1;
     }
 
     private String input() {
