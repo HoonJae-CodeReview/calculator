@@ -45,8 +45,10 @@ public class Calculator {
     }
 
     private void displayHistory(){
+        if(this.History.size()==0) return;
+
         StringBuilder stringBuilder = new StringBuilder();
-        History.forEach((history -> stringBuilder.append(history).append('\n')));
+        this.History.forEach((history -> stringBuilder.append(history).append('\n')));
         System.out.println(stringBuilder);
     }
 
