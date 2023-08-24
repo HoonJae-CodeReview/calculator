@@ -8,6 +8,16 @@ public class Calculator {
     ArrayList<String> History = new ArrayList<>();
     BufferedReader bufferedReader;
 
+    MenuItem[] MenuItems = {
+            new MenuItem("조회", () -> this.displayHistory()),
+            new MenuItem("계산", () -> {
+                String expression = this.input();
+                long result = calculate(expression);
+                System.out.println("\n" + result + "\n");
+                addHistory(expression, result);
+            })
+    };
+
     public Calculator(BufferedReader bufferedReader){
         this.bufferedReader = bufferedReader;
     }
