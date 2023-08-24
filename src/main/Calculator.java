@@ -12,9 +12,39 @@ public class Calculator {
         this.bufferedReader = bufferedReader;
     }
 
+    public void run() throws IOException {
+        showMenu();
+        String input = this.bufferedReader.readLine();
+        System.out.println();
+        switch(input){
+            case "1" :
+                displayHistory();
+                break;
+            case "2" :
+                String expression = this.bufferedReader.readLine();
+                long result = calculate(expression);
+                System.out.println("\n" + result + "\n");
+                addHistory(expression, result);
+                break;
+        }
+    }
+
     public void showMenu(){
         System.out.print("1. 조회\n2. 계산\n\n선택 : ");
     }
+
+    private void addHistory(String expression, long result){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(expression).append(" = ").append(result);
+        this.History.add(stringBuilder.toString());
+    }
+
+    private void displayHistory(){
+        StringBuilder stringBuilder = new StringBuilder();
+        History.forEach((history -> stringBuilder.append(history).append('\n')));
+        System.out.println(stringBuilder);
+    }
+
     public long calculate(String expression){
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
 
@@ -62,31 +92,5 @@ public class Calculator {
 
         return resultValue;
     }
-    private void addHistory(String expression, long result){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(expression).append(" = ").append(result);
-        this.History.add(stringBuilder.toString());
-    }
-    private void displayHistory(){
-        StringBuilder stringBuilder = new StringBuilder();
-        History.forEach((history -> stringBuilder.append(history).append('\n')));
-        System.out.println(stringBuilder);
-    }
 
-    public void run() throws IOException {
-        showMenu();
-        String input = this.bufferedReader.readLine();
-        System.out.println();
-        switch(input){
-            case "1" :
-                displayHistory();
-                break;
-            case "2" :
-                String expression = this.bufferedReader.readLine();
-                long result = calculate(expression);
-                System.out.println("\n" + result + "\n");
-                addHistory(expression, result);
-                break;
-        }
-    }
 }
