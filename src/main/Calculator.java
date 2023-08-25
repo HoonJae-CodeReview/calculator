@@ -24,19 +24,13 @@ public class Calculator {
 
 //            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextOperator,nextValue,resultValue,currentOperator,currentValue,nextOperator,nextValue);
 
-            switch(nextOperator){
-                case '+' :
-                case '-' :
-                    resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
-                    currentValue = nextValue;
-                    currentOperator = nextOperator;
-                    break;
-                case '*' :
-                case '/' :
-                    currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
-                    break;
-                default:
-                    //err
+            if(nextOperator == '+' || nextOperator == '-'){
+                resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
+                currentValue = nextValue;
+                currentOperator = nextOperator;
+            }
+            else if(nextOperator == '*' || nextOperator == '/'){
+                currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
             }
         }
         resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
