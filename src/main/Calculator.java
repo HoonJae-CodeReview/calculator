@@ -45,7 +45,7 @@ public class Calculator {
             System.err.println(e);
         }
     }
-    private void displayMenu(){
+    public void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');
 
@@ -60,7 +60,7 @@ public class Calculator {
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
     }
-    private int inputMenuItemIndex() throws BadMenuSelectException {
+    public int inputMenuItemIndex() throws BadMenuSelectException {
         String inputString = input();
         if(!Pattern.matches("\\d+", inputString)){
             throw new BadMenuSelectException("숫자가 아닙니다");
@@ -75,7 +75,7 @@ public class Calculator {
         return selectedMenuIndex;
     }
 
-    private void addHistory(String expression, long result){
+    public void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(expression);
         stringBuilder.append(" = ");
@@ -83,7 +83,7 @@ public class Calculator {
         String history = stringBuilder.toString();
         this.history.add(history);
     }
-    private void displayHistory(){
+    public void displayHistory(){
         if(this.history.size()==0) return;
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -94,7 +94,7 @@ public class Calculator {
         System.out.println(stringBuilder);
     }
 
-    private long calculate(String expression){
+    public long calculate(String expression){
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
 
         long resultValue = 0;
@@ -127,7 +127,7 @@ public class Calculator {
 
         return resultValue;
     }
-    private long calculateBySymbol(long value1, long value2, char Operator){
+    public long calculateBySymbol(long value1, long value2, char Operator){
         switch(Operator){
             case '+' : return value1 + value2;
             case '-' : return value1 - value2;
@@ -137,7 +137,7 @@ public class Calculator {
         }
     }
 
-    private String input() {
+    public String input() {
         try{
             return this.bufferedReader.readLine();
         }
