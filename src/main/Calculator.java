@@ -32,12 +32,12 @@ public class Calculator {
     }
 
     public void run() {
-        showMenu();
+        displayMenu();
 
         Operation selectedOperation = menuItems[selectMenuItemIndex()].getOperation();
         selectedOperation.run();
     }
-    private void showMenu(){
+    private void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         int menuItemCnt = menuItems.length;
         for(int i=0; i<menuItemCnt; i++){
