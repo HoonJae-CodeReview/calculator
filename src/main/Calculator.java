@@ -9,13 +9,13 @@ public class Calculator {
 
     ArrayList<String> history = new ArrayList<>();
     BufferedReader bufferedReader;
-    MenuItem[] menuItems;
+
+    final MenuItem[] MENU_ITEMS = initMenuItems();
 
     public Calculator(BufferedReader bufferedReader){
         this.bufferedReader = bufferedReader;
-        initMenuItems();
     }
-    private void initMenuItems(){
+    private MenuItem[] initMenuItems(){
         MenuItem doDisplayHistory = new MenuItem("조회", () -> {
             this.displayHistory();
         });
@@ -27,9 +27,9 @@ public class Calculator {
             addHistory(expression, result);
         });
 
-        menuItems = new MenuItem[] {
-            doDisplayHistory,
-            doCalculate
+        return new MenuItem[] {
+                doDisplayHistory,
+                doCalculate
         };
     }
 
@@ -37,7 +37,7 @@ public class Calculator {
         try{
             displayMenu();
 
-            Operation selectedOperation = menuItems[inputMenuItemIndex()].getOperation();
+            Operation selectedOperation = MENU_ITEMS[inputMenuItemIndex()].getOperation();
             selectedOperation.run();
         }
         catch(BadMenuSelectException e){
@@ -48,9 +48,9 @@ public class Calculator {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');
 
-        int menuItemCnt = menuItems.length;
+        int menuItemCnt = MENU_ITEMS.length;
         for(int i=0; i<menuItemCnt; i++){
-            String title = menuItems[i].getTitle();
+            String title = MENU_ITEMS[i].getTitle();
             stringBuilder.append(i+1);
             stringBuilder.append(". ");
             stringBuilder.append(title);
@@ -69,7 +69,7 @@ public class Calculator {
             throw new BadMenuSelectException();
         }
 
-        if(selectedMenuIndex < 0 || selectedMenuIndex >= menuItems.length){
+        if(selectedMenuIndex < 0 || selectedMenuIndex >= MENU_ITEMS.length){
             throw new BadMenuSelectException();
         }
 
