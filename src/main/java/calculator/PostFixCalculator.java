@@ -5,7 +5,8 @@ import java.util.Stack;
 
 public class PostFixCalculator implements Calculator{
 
-
+    int firstOperand;
+    int secondOperand;
     @Override
     public int calculator(String postfixExpression){
         Stack<Integer> result = new Stack<>();
@@ -14,16 +15,24 @@ public class PostFixCalculator implements Calculator{
             String value = str;
             switch (value){
                 case "+":
-                    result.push(result.pop() + result.pop());
+                    firstOperand = result.pop();
+                    secondOperand = result.pop();
+                    result.push(secondOperand + firstOperand);
                     break;
                 case "-":
-                    result.push(result.pop() - result.pop());
+                    firstOperand = result.pop();
+                    secondOperand = result.pop();
+                    result.push(secondOperand - firstOperand);
                     break;
                 case "*":
-                    result.push(result.pop() * result.pop());
+                    firstOperand = result.pop();
+                    secondOperand = result.pop();
+                    result.push(secondOperand * firstOperand);
                     break;
                 case "/":
-                    result.push(result.pop() / result.pop());
+                    firstOperand = result.pop();
+                    secondOperand = result.pop();
+                    result.push(secondOperand / firstOperand);
                     break;
                 case " ":
                     break;
