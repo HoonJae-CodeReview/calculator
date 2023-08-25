@@ -1,5 +1,6 @@
 package src.main;
 
+import src.main.exception.BadExpressionException;
 import src.main.exception.BadMenuSelectException;
 
 public class CalculatorDriver {
@@ -18,10 +19,7 @@ public class CalculatorDriver {
             menuSelector.displayMenu();
             menuSelector.selectMenu();
         }
-        catch(NumberFormatException e){
-            printer.print(e);
-        }
-        catch(BadMenuSelectException e) {
+        catch(BadMenuSelectException | BadExpressionException e) {
             printer.print(e);
         }
     }
