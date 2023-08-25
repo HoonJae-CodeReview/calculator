@@ -16,17 +16,19 @@ public class Input {
     static SelectValidation selectValidation = new SelectValidation();
 
 
-    public void select() throws IOException {
+    public int select() throws IOException {
         System.out.println("1.조회");
         System.out.println("2.계산");
         select = Integer.parseInt(bufferedReader.readLine());
         System.out.println("선택 " + select);
-
+        System.out.println();
+        return select;
     }
 
-    public void expression() throws  IOException{
+    public String expression() throws  IOException{
         expression = bufferedReader.readLine();
-    }
+        return expression;
 
+    }
 
 }
