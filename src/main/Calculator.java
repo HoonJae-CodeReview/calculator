@@ -1,87 +1,8 @@
 package src.main;
 
-import src.main.exception.BadMenuSelectException;
-
-import java.io.*;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class Calculator {
-
-    ArrayList<String> history = new ArrayList<>();
-    BufferedReader bufferedReader;
-
-    final MenuItem[] MENU_ITEMS = initMenuItems();
-
-    public Calculator(BufferedReader bufferedReader){
-        this.bufferedReader = bufferedReader;
-    }
-    private MenuItem[] initMenuItems(){
-        MenuItem doDisplayHistory = new MenuItem("조회", () -> {
-            this.displayHistory();
-        });
-
-        MenuItem doCalculate = new MenuItem("계산", () -> {
-            String expression = this.input();
-            long result = calculate(expression);
-            System.out.println("\n" + result);
-            addHistory(expression, result);
-        });
-
-        return new MenuItem[] {
-                doDisplayHistory,
-                doCalculate
-        };
-    }
-
-    public void displayMenu(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append('\n');
-
-        int menuItemCnt = MENU_ITEMS.length;
-        for(int i=0; i<menuItemCnt; i++){
-            String title = MENU_ITEMS[i].getTitle();
-            stringBuilder.append(i+1);
-            stringBuilder.append(". ");
-            stringBuilder.append(title);
-            stringBuilder.append('\n');
-        }
-        stringBuilder.append("\n선택 : ");
-        System.out.print(stringBuilder);
-    }
-    public int inputMenuItemIndex() throws BadMenuSelectException {
-        String inputString = input();
-        if(!Pattern.matches("\\d+", inputString)){
-            throw new BadMenuSelectException("숫자가 아닙니다");
-        }
-
-        int selectedMenuIndex = Integer.parseInt(inputString) - 1;
-        if(selectedMenuIndex < 0 || selectedMenuIndex >= MENU_ITEMS.length){
-            throw new BadMenuSelectException("해당하는 항목이 없습니다");
-        }
-
-        System.out.println();
-        return selectedMenuIndex;
-    }
-
-    public void addHistory(String expression, long result){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(expression);
-        stringBuilder.append(" = ");
-        stringBuilder.append(result);
-        String history = stringBuilder.toString();
-        this.history.add(history);
-    }
-    public void displayHistory(){
-        if(this.history.size()==0) return;
-
-        StringBuilder stringBuilder = new StringBuilder();
-        this.history.forEach((string -> {
-            stringBuilder.append(string);
-            stringBuilder.append('\n');
-        }));
-        System.out.println(stringBuilder);
-    }
 
     public long calculate(String expression){
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
@@ -116,6 +37,7 @@ public class Calculator {
 
         return resultValue;
     }
+
     public long calculateBySymbol(long value1, long value2, char Operator){
         switch(Operator){
             case '+' : return value1 + value2;
@@ -126,12 +48,4 @@ public class Calculator {
         }
     }
 
-    public String input() {
-        try{
-            return this.bufferedReader.readLine();
-        }
-        catch(IOException e){
-            return "";
-        }
-    }
 }
