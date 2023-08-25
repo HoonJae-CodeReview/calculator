@@ -36,7 +36,7 @@ public class MenuSelector {
         int selectedMenuItemIndex = Integer.parseInt(inputString) - 1;
 
         if(selectedMenuItemIndex < 0 || selectedMenuItemIndex >= menuItems.length){
-            throw new BadMenuSelectException("해당하는 항목이 없습니다");
+            throw new BadMenuSelectException();
         }
 
         this.runMenuItem(selectedMenuItemIndex);

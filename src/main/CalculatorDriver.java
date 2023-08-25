@@ -18,8 +18,11 @@ public class CalculatorDriver {
             menuSelector.displayMenu();
             menuSelector.selectMenu();
         }
-        catch(NumberFormatException | BadMenuSelectException e){
-            System.err.println(e);
+        catch(NumberFormatException e){
+            printer.print(e);
+        }
+        catch(BadMenuSelectException e) {
+            printer.print(e);
         }
     }
 
@@ -31,7 +34,7 @@ public class CalculatorDriver {
         MenuItem doCalculate = new MenuItem("계산", () -> {
             String expression = reader.input();
             long result = calculator.calculate(expression);
-            printer.println(result);
+            printer.print(result);
             recorder.addHistory(expression, result);
         });
 
