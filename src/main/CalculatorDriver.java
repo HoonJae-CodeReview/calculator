@@ -18,7 +18,7 @@ public class CalculatorDriver {
             menuSelector.displayMenu();
             menuSelector.selectMenu();
         }
-        catch(BadMenuSelectException e){
+        catch(NumberFormatException | BadMenuSelectException e){
             System.err.println(e);
         }
     }
