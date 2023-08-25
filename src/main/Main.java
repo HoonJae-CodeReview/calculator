@@ -10,6 +10,8 @@ public class Main{
 
     static Calculator calculator = new Calculator(bufferedReader);
 
+    static Recorder recorder = new Recorder();
+
     public static void main(String[] args) throws IOException {
         while(true){
             try{
