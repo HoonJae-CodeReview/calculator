@@ -14,7 +14,10 @@ public class Calculator {
         initMenuItems();
     }
     private void initMenuItems(){
-        MenuItem doDisplayHistory = new MenuItem("조회", () -> this.displayHistory());
+        MenuItem doDisplayHistory = new MenuItem("조회", () -> {
+            this.displayHistory();
+        });
+
         MenuItem doCalculate = new MenuItem("계산", () -> {
             String expression = this.input();
             long result = calculate(expression);
