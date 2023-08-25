@@ -7,7 +7,9 @@ public class CalculatorDriver {
     static Reader reader = new Reader();
     static Printer printer = new Printer();
 
-    static MenuSelector menuSelector = new MenuSelector(initMenuItems(), printer);
+    static final MenuItem[] MENU_ITEMS = initMenuItems();
+
+    static MenuSelector menuSelector = new MenuSelector(MENU_ITEMS, printer);
     static Calculator calculator = new Calculator();
     static Recorder recorder = new Recorder(printer);
 
@@ -17,7 +19,7 @@ public class CalculatorDriver {
 
             String inputString = reader.input();
             int selectedMenuItemIndex = menuSelector.inputMenuItemIndex(inputString);
-            MenuItem selectedMenuItem = menuSelector.menuItems[selectedMenuItemIndex];
+            MenuItem selectedMenuItem = MENU_ITEMS[selectedMenuItemIndex];
 
             Operation selectedOperation = selectedMenuItem.getOperation();
             selectedOperation.run();
