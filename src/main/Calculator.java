@@ -14,14 +14,17 @@ public class Calculator {
         initMenuItems();
     }
     private void initMenuItems(){
+        MenuItem doDisplayHistory = new MenuItem("조회", () -> this.displayHistory());
+        MenuItem doCalculate = new MenuItem("계산", () -> {
+            String expression = this.input();
+            long result = calculate(expression);
+            System.out.println("\n" + result + "\n");
+            addHistory(expression, result);
+        });
+
         menuItems = new MenuItem[] {
-                new MenuItem("조회", () -> this.displayHistory()),
-                new MenuItem("계산", () -> {
-                    String expression = this.input();
-                    long result = calculate(expression);
-                    System.out.println("\n" + result + "\n");
-                    addHistory(expression, result);
-                })
+            doDisplayHistory,
+            doCalculate
         };
     }
 
