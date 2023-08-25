@@ -24,10 +24,11 @@ public class Execution {
 
         while(true){
             SelectInput selectInput = new SelectInput();
-            int select = selectInput.input();
-            if(!selectValidation.checkSelectValue(select)){
+            String input = selectInput.input();
+            if(!selectValidation.checkSelectValue(input)){
                 continue;
             }
+            int select = Integer.parseInt(input);
             if(select== Options.CHECK.getValue()){
                 Inquire inquire = new Inquire();
                 inquire.printResult();
