@@ -6,9 +6,7 @@ import java.util.logging.Logger;
 
 public class Calculator {
 
-
-    String pattern =  "[+\\-*/]";
-    String postfix = "";
+    private static String postfix = "";
 
     public String changeToPostFix(String expression){
         Stack<String> operator = new Stack();
