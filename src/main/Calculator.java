@@ -4,6 +4,7 @@ import src.main.exception.BadMenuSelectException;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -60,17 +61,14 @@ public class Calculator {
         System.out.print(stringBuilder);
     }
     private int inputMenuItemIndex() throws BadMenuSelectException {
-        int selectedMenuIndex;
-
-        try{
-            selectedMenuIndex = Integer.parseInt(input()) - 1;
-        }
-        catch(NumberFormatException e){
-            throw new BadMenuSelectException();
+        String inputString = input();
+        if(!Pattern.matches("\\d+", inputString)){
+            throw new BadMenuSelectException("숫자가 아닙니다");
         }
 
+        int selectedMenuIndex = Integer.parseInt(inputString) - 1;
         if(selectedMenuIndex < 0 || selectedMenuIndex >= MENU_ITEMS.length){
-            throw new BadMenuSelectException();
+            throw new BadMenuSelectException("해당하는 항목이 없습니다");
         }
 
         System.out.println();
