@@ -42,14 +42,4 @@ public class PostFixCalculator implements Calculator{
         });
     return result.pop();
     }
-
-
-
-
-
-
-
-
-
-
 }
