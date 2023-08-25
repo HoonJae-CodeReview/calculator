@@ -1,5 +1,7 @@
 package src.main;
 
+import src.main.exception.BadMenuSelectException;
+
 import java.io.*;
 import java.util.*;
 
@@ -32,10 +34,15 @@ public class Calculator {
     }
 
     public void run() {
-        displayMenu();
+        try{
+            displayMenu();
 
-        Operation selectedOperation = menuItems[inputMenuItemIndex()].getOperation();
-        selectedOperation.run();
+            Operation selectedOperation = menuItems[inputMenuItemIndex()].getOperation();
+            selectedOperation.run();
+        }
+        catch(BadMenuSelectException e){
+            System.err.println(e);
+        }
     }
     private void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -52,10 +59,22 @@ public class Calculator {
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
     }
-    private int inputMenuItemIndex(){
-        int inputNumber = Integer.parseInt(input());
+    private int inputMenuItemIndex() throws BadMenuSelectException {
+        int selectedMenuIndex;
+
+        try{
+            selectedMenuIndex = Integer.parseInt(input()) - 1;
+        }
+        catch(NumberFormatException e){
+            throw new BadMenuSelectException();
+        }
+
+        if(selectedMenuIndex < 0 || selectedMenuIndex >= menuItems.length){
+            throw new BadMenuSelectException();
+        }
+
         System.out.println();
-        return inputNumber - 1;
+        return selectedMenuIndex;
     }
 
     private void addHistory(String expression, long result){
