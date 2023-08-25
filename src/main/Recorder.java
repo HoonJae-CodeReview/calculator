@@ -6,7 +6,7 @@ public class Recorder {
 
     ArrayList<String> history = new ArrayList<>();
 
-    private void addHistory(String expression, long result){
+    public void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(expression);
         stringBuilder.append(" = ");
@@ -15,7 +15,7 @@ public class Recorder {
         this.history.add(history);
     }
 
-    private void displayHistory(){
+    public void displayHistory(){
         if(this.history.size()==0) return;
 
         StringBuilder stringBuilder = new StringBuilder();
