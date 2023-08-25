@@ -34,17 +34,6 @@ public class Calculator {
         };
     }
 
-    public void run() {
-        try{
-            displayMenu();
-
-            Operation selectedOperation = MENU_ITEMS[inputMenuItemIndex()].getOperation();
-            selectedOperation.run();
-        }
-        catch(BadMenuSelectException e){
-            System.err.println(e);
-        }
-    }
     public void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');

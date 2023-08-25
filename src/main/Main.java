@@ -1,5 +1,7 @@
 package src.main;
 
+import src.main.exception.BadMenuSelectException;
+
 import java.io.*;
 
 public class Main{
@@ -10,7 +12,15 @@ public class Main{
 
     public static void main(String[] args) throws IOException {
         while(true){
-            calculator.run();
+            try{
+                calculator.displayMenu();
+
+                Operation selectedOperation = calculator.MENU_ITEMS[calculator.inputMenuItemIndex()].getOperation();
+                selectedOperation.run();
+            }
+            catch(BadMenuSelectException e){
+                System.err.println(e);
+            }
         }
     }
 }
