@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Inquire {
 
-    Repository repository = new Repository();
+    private static Repository repository = new Repository();
 
     public void printResult(){
         List<String> result = repository.getResult();
