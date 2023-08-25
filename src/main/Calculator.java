@@ -10,35 +10,35 @@ public class Calculator {
         long resultValue = 0;
 
         long currentValue = Long.parseLong(stringTokenizer.nextToken());
-        char currentSymbol = '+';
+        char currentOperator = '+';
 
         while(stringTokenizer.hasMoreTokens()){
-            char nextSymbol = stringTokenizer.nextToken().charAt(0);
+            char nextOperator = stringTokenizer.nextToken().charAt(0);
             long nextValue = Long.parseLong(stringTokenizer.nextToken());
 
-//            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextSymbol,nextValue,resultValue,currentSymbol,currentValue,nextSymbol,nextValue);
+//            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextOperator,nextValue,resultValue,currentOperator,currentValue,nextOperator,nextValue);
 
-            switch(nextSymbol){
+            switch(nextOperator){
                 case '+' :
                 case '-' :
-                    resultValue = calculateBySymbol(resultValue, currentValue, currentSymbol);  // 덧셈이나 뺄셈만 수행
+                    resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
                     currentValue = nextValue;
-                    currentSymbol = nextSymbol;
+                    currentOperator = nextOperator;
                     break;
                 case '*' :
                 case '/' :
-                    currentValue = calculateBySymbol(currentValue, nextValue, nextSymbol);
+                    currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
                     break;
                 default:
                     //err
             }
         }
-        resultValue = calculateBySymbol(resultValue, currentValue, currentSymbol);  // 덧셈이나 뺄셈만 수행
+        resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
 
         return resultValue;
     }
 
-    public long calculateBySymbol(long value1, long value2, char Operator){
+    public long calculateByOperator(long value1, long value2, char Operator){
         switch(Operator){
             case '+' : return value1 + value2;
             case '-' : return value1 - value2;
