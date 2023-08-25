@@ -1,10 +1,10 @@
 package src.main;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Recorder {
 
-    ArrayList<String> history = new ArrayList<>();
+    HashMap<String, Long> history = new HashMap<>();
     Printer printer;
 
     public Recorder(Printer printer){
@@ -12,12 +12,7 @@ public class Recorder {
     }
 
     public void addHistory(String expression, long result){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(expression);
-        stringBuilder.append(" = ");
-        stringBuilder.append(result);
-        String history = stringBuilder.toString();
-        this.history.add(history);
+        this.history.put(expression, result);
     }
 
     public void displayHistory(){
@@ -25,10 +20,17 @@ public class Recorder {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');
-        this.history.forEach((string -> {
-            stringBuilder.append(string);
+
+        for(Map.Entry<String, Long> entry: history.entrySet()){
+            String expression = entry.getKey();
+            Long result = entry.getValue();
+
+            stringBuilder.append(expression);
+            stringBuilder.append(" = ");
+            stringBuilder.append(result);
             stringBuilder.append('\n');
-        }));
+        }
+
         printer.print(stringBuilder);
     }
 
