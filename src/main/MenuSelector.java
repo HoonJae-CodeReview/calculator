@@ -33,7 +33,7 @@ public class MenuSelector {
 
     public void selectMenu() throws BadMenuSelectException, NumberFormatException {
         String inputString = reader.input();
-        int selectedMenuItemIndex = Integer.parseInt(inputString) - 1;
+        int selectedMenuItemIndex = getIntValue(inputString) - 1;
 
         if(selectedMenuItemIndex < 0 || selectedMenuItemIndex >= menuItems.length){
             throw new BadMenuSelectException();
@@ -46,6 +46,15 @@ public class MenuSelector {
         MenuItem selectedMenuItem = menuItems[menuItemIndex];
         Operation selectedOperation = selectedMenuItem.getOperation();
         selectedOperation.run();
+    }
+
+    private int getIntValue(String string){
+        try{
+            return Integer.parseInt(string);
+        }
+        catch (NumberFormatException e){
+            throw new BadMenuSelectException();
+        }
     }
 
 }
