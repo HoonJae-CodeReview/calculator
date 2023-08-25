@@ -57,7 +57,7 @@ public class Calculator {
     public char getOperator(String string) {
         char character = string.charAt(0);
         if(string.length()!=1 && character!='+' && character!='-' && character!='*' && character!='/') {
-            throw new BadExpressionException();
+            throw new BadExpressionException("올바른 부호를 입력해주세요");
         }
         return character;
     }
@@ -67,7 +67,7 @@ public class Calculator {
             return Long.parseLong(string);
         }
         catch(NumberFormatException e){
-            throw new BadExpressionException();
+            throw new BadExpressionException("올바른 숫자를 입력해주세요");
         }
     }
 
