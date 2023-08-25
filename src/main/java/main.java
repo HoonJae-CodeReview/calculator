@@ -1,5 +1,8 @@
 import calculator.Calculator;
-import input.Input;
+import calculator.InFixCalculator;
+import calculator.PostFixCalculator;
+import input.ExpressionInput;
+import input.SelectInput;
 import inquire.Inquire;
 import options.Options;
 import repository.Repository;
@@ -10,27 +13,34 @@ import java.io.IOException;
 
 public class main {
     private static SelectValidation selectValidation = new SelectValidation();
-    private static Repository repository = new Repository();
-    private static Calculator calculator = new Calculator();
-    private static Input input = new Input();
-    private static Inquire inquire = new Inquire();
+
 
     private static ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
+
+
     public static void main(String[] args) throws IOException {
 
         while(true){
-            input.select();
-            if(!selectValidation.checkSelectValue(Input.select)){
+            SelectInput selectInput = new SelectInput();
+            int select = selectInput.input();
+            if(!selectValidation.checkSelectValue(select)){
                 continue;
             }
-            if(Input.select == Options.CHECK.getValue()){
+            if(select== Options.CHECK.getValue()){
+                Inquire inquire = new Inquire();
                 inquire.printResult();
             }
-            else if(Input.select == Options.CALCULATE.getValue()){
-                String expression = input.expression();
-                String postfixExpression = calculator.changeToPostFix(expression);
-                int result = calculator.calculator(postfixExpression);
-                repository.store(expression + " = " + result);
+            else if(select== Options.CALCULATE.getValue()){
+                ExpressionInput expressionInput = new ExpressionInput();
+                String Expression = expressionInput.input();
+                if(!expressionInputValidation.checkExpressionValue(Expression)){
+                    continue;
+                }
+                Calculator calculator = new InFixCalculator();
+                int result = calculator.calculator(Expression);
+                Repository repository = new Repository();
+                System.out.println(result);
+                repository.store(Expression + " = " + result);
 
             }
         }
