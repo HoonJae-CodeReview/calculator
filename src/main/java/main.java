@@ -11,9 +11,15 @@ public class main {
 
 
     public static void main(String[] args) throws IOException {
+
+        SelectValidation selectValidation = new SelectValidation();
+
         while(true){
             Input input = new Input();
             input.select();
+            if(!selectValidation.checkSelectValue(Input.select)){
+                continue;
+            }
             if(Input.select == Options.CHECK.getValue()){
                 Inquire inquire = new Inquire();
                 inquire.printResult();
