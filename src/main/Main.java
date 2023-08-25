@@ -3,9 +3,10 @@ package src.main;
 import src.main.exception.BadMenuSelectException;
 
 import java.io.*;
-import java.util.regex.Pattern;
 
 public class Main{
+
+    static MenuSelector menuSelector = new MenuSelector(initMenuItems());
 
     static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -13,17 +14,13 @@ public class Main{
 
     static Recorder recorder = new Recorder();
 
-    static MenuItem[] menuItems;
-
-    public static void main(String[] args) throws IOException {
-
-        menuItems = initMenuItems();
+    public static void main(String[] args){
 
         while(true){
             try{
-                displayMenu();
+                menuSelector.displayMenu();
 
-                Operation selectedOperation = menuItems[inputMenuItemIndex()].getOperation();
+                Operation selectedOperation = menuSelector.menuItems[menuSelector.inputMenuItemIndex(input())].getOperation();
                 selectedOperation.run();
             }
             catch(BadMenuSelectException e){
@@ -32,7 +29,7 @@ public class Main{
         }
     }
 
-    private static MenuItem[] initMenuItems() throws IOException {
+    private static MenuItem[] initMenuItems(){
         MenuItem doDisplayHistory = new MenuItem("조회", () -> {
             recorder.displayHistory();
         });
@@ -48,37 +45,6 @@ public class Main{
                 doDisplayHistory,
                 doCalculate
         };
-    }
-
-    public static void displayMenu(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append('\n');
-
-        int menuItemCnt = menuItems.length;
-        for(int i=0; i<menuItemCnt; i++){
-            String title = menuItems[i].getTitle();
-            stringBuilder.append(i+1);
-            stringBuilder.append(". ");
-            stringBuilder.append(title);
-            stringBuilder.append('\n');
-        }
-        stringBuilder.append("\n선택 : ");
-        System.out.print(stringBuilder);
-    }
-
-    public static int inputMenuItemIndex() throws BadMenuSelectException {
-        String inputString = input();
-        if(!Pattern.matches("\\d+", inputString)){
-            throw new BadMenuSelectException("숫자가 아닙니다");
-        }
-
-        int selectedMenuIndex = Integer.parseInt(inputString) - 1;
-        if(selectedMenuIndex < 0 || selectedMenuIndex >= menuItems.length){
-            throw new BadMenuSelectException("해당하는 항목이 없습니다");
-        }
-
-        System.out.println();
-        return selectedMenuIndex;
     }
 
     public static String input(){
