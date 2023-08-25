@@ -34,7 +34,7 @@ public class Calculator {
     public void run() {
         displayMenu();
 
-        Operation selectedOperation = menuItems[selectMenuItemIndex()].getOperation();
+        Operation selectedOperation = menuItems[inputMenuItemIndex()].getOperation();
         selectedOperation.run();
     }
     private void displayMenu(){
@@ -50,10 +50,10 @@ public class Calculator {
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
     }
-    private int selectMenuItemIndex(){
-        int selectedMenu = Integer.parseInt(input());
+    private int inputMenuItemIndex(){
+        int inputNumber = Integer.parseInt(input());
         System.out.println();
-        return selectedMenu - 1;
+        return inputNumber - 1;
     }
 
     private void addHistory(String expression, long result){
