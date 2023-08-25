@@ -9,20 +9,14 @@ public class CalculatorDriver {
 
     static final MenuItem[] MENU_ITEMS = initMenuItems();
 
-    static MenuSelector menuSelector = new MenuSelector(MENU_ITEMS, printer);
+    static MenuSelector menuSelector = new MenuSelector(MENU_ITEMS, reader, printer);
     static Calculator calculator = new Calculator();
     static Recorder recorder = new Recorder(printer);
 
     public void run(){
         try{
             menuSelector.displayMenu();
-
-            String inputString = reader.input();
-            int selectedMenuItemIndex = menuSelector.inputMenuItemIndex(inputString);
-            MenuItem selectedMenuItem = MENU_ITEMS[selectedMenuItemIndex];
-
-            Operation selectedOperation = selectedMenuItem.getOperation();
-            selectedOperation.run();
+            menuSelector.selectMenu();
         }
         catch(BadMenuSelectException e){
             System.err.println(e);

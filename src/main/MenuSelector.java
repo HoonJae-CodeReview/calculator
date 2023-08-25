@@ -2,15 +2,15 @@ package src.main;
 
 import src.main.exception.BadMenuSelectException;
 
-import java.util.regex.Pattern;
-
 public class MenuSelector {
 
     MenuItem[] menuItems;
+    Reader reader;
     Printer printer;
 
-    public MenuSelector(MenuItem[] menuItems, Printer printer){
+    public MenuSelector(MenuItem[] menuItems, Reader reader, Printer printer){
         this.menuItems = menuItems;
+        this.reader = reader;
         this.printer = printer;
     }
 
@@ -31,16 +31,21 @@ public class MenuSelector {
         printer.print(stringBuilder);
     }
 
-    public int inputMenuItemIndex(String inputString) throws BadMenuSelectException {
-        if(!Pattern.matches("\\d+", inputString)){
-            throw new BadMenuSelectException("숫자가 아닙니다");
-        }
+    public void selectMenu() throws BadMenuSelectException, NumberFormatException {
+        String inputString = reader.input();
+        int selectedMenuItemIndex = Integer.parseInt(inputString) - 1;
 
-        int selectedMenuIndex = Integer.parseInt(inputString) - 1;
-        if(selectedMenuIndex < 0 || selectedMenuIndex >= menuItems.length){
+        if(selectedMenuItemIndex < 0 || selectedMenuItemIndex >= menuItems.length){
             throw new BadMenuSelectException("해당하는 항목이 없습니다");
         }
 
-        return selectedMenuIndex;
+        this.runMenuItem(selectedMenuItemIndex);
     }
+
+    public void runMenuItem(int menuItemIndex){
+        MenuItem selectedMenuItem = menuItems[menuItemIndex];
+        Operation selectedOperation = selectedMenuItem.getOperation();
+        selectedOperation.run();
+    }
+
 }
