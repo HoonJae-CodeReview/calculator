@@ -6,10 +6,10 @@ public class ChangToPostfixTest {
 
 @Test
 public void PostfixTest(){
-    String input = "1 + 2 * 3 ";
-    String expect = "1  2 + 3 *";
+    String input = "1 + 2 * 3";
+    String expect = "1 2 3 * + ";
     Calculator calculator = new Calculator();
     String value = calculator.changeToPostFix(input);
-    Assertions.assertEquals(value,expect);
+    Assertions.assertEquals(expect,value);
 }
 }
