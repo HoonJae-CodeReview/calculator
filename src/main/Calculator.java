@@ -30,13 +30,13 @@ public class Calculator {
 
     public void run() {
         showMenu();
-        menuItems[selectMenuItemIndex()].operation.run();
+        menuItems[selectMenuItemIndex()].getOperation().run();
     }
     private void showMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         int menuItemCnt = menuItems.length;
         for(int i=0; i<menuItemCnt; i++){
-            stringBuilder.append(i+1).append(". ").append(menuItems[i].title).append('\n');
+            stringBuilder.append(i+1).append(". ").append(menuItems[i].getTitle()).append('\n');
         }
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);

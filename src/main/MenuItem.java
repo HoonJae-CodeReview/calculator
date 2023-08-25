@@ -8,4 +8,12 @@ public class MenuItem {
         this.title = title;
         this.operation = operation;
     }
+
+    public String getTitle(){
+        return this.title;
+    }
+
+    public Operation getOperation(){
+        return this.operation;
+    }
 }
