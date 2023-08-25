@@ -20,7 +20,9 @@ public class Main{
             try{
                 menuSelector.displayMenu();
 
-                Operation selectedOperation = menuSelector.menuItems[menuSelector.inputMenuItemIndex(input())].getOperation();
+                int selectedMenuItemIndex = menuSelector.inputMenuItemIndex(input());
+                MenuItem selectedMenuItem = menuSelector.menuItems[selectedMenuItemIndex];
+                Operation selectedOperation = selectedMenuItem.getOperation();
                 selectedOperation.run();
             }
             catch(BadMenuSelectException e){
