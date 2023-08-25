@@ -5,12 +5,11 @@ import src.main.exception.BadMenuSelectException;
 public class Main{
 
     static Reader reader = new Reader();
+    static Printer printer = new Printer();
 
-    static MenuSelector menuSelector = new MenuSelector(initMenuItems());
-
+    static MenuSelector menuSelector = new MenuSelector(initMenuItems(), printer);
     static Calculator calculator = new Calculator();
-
-    static Recorder recorder = new Recorder();
+    static Recorder recorder = new Recorder(printer);
 
     public static void main(String[] args){
 
@@ -39,7 +38,7 @@ public class Main{
         MenuItem doCalculate = new MenuItem("계산", () -> {
             String expression = reader.input();
             long result = calculator.calculate(expression);
-            System.out.println("\n" + result);
+            printer.println(result);
             recorder.addHistory(expression, result);
         });
 

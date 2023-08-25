@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Recorder {
 
     ArrayList<String> history = new ArrayList<>();
+    Printer printer;
+
+    public Recorder(Printer printer){
+        this.printer = printer;
+    }
 
     public void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
@@ -19,11 +24,12 @@ public class Recorder {
         if(this.history.size()==0) return;
 
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('\n');
         this.history.forEach((string -> {
             stringBuilder.append(string);
             stringBuilder.append('\n');
         }));
-        System.out.println(stringBuilder);
+        printer.print(stringBuilder);
     }
 
 }

@@ -7,9 +7,11 @@ import java.util.regex.Pattern;
 public class MenuSelector {
 
     MenuItem[] menuItems;
+    Printer printer;
 
-    public MenuSelector(MenuItem[] menuItems){
+    public MenuSelector(MenuItem[] menuItems, Printer printer){
         this.menuItems = menuItems;
+        this.printer = printer;
     }
 
     public void displayMenu(){
@@ -25,7 +27,8 @@ public class MenuSelector {
             stringBuilder.append('\n');
         }
         stringBuilder.append("\n선택 : ");
-        System.out.print(stringBuilder);
+
+        printer.print(stringBuilder);
     }
 
     public int inputMenuItemIndex(String inputString) throws BadMenuSelectException {
@@ -38,7 +41,6 @@ public class MenuSelector {
             throw new BadMenuSelectException("해당하는 항목이 없습니다");
         }
 
-        System.out.println();
         return selectedMenuIndex;
     }
 }
