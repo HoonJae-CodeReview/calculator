@@ -21,7 +21,7 @@ public class Calculator {
         MenuItem doCalculate = new MenuItem("계산", () -> {
             String expression = this.input();
             long result = calculate(expression);
-            System.out.println("\n" + result + "\n");
+            System.out.println("\n" + result);
             addHistory(expression, result);
         });
 
@@ -39,6 +39,8 @@ public class Calculator {
     }
     private void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('\n');
+
         int menuItemCnt = menuItems.length;
         for(int i=0; i<menuItemCnt; i++){
             String title = menuItems[i].getTitle();
