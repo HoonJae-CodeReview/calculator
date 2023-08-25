@@ -42,7 +42,7 @@ public class MenuSelector {
         this.runMenuItem(selectedMenuItemIndex);
     }
 
-    public void runMenuItem(int menuItemIndex){
+    private void runMenuItem(int menuItemIndex){
         MenuItem selectedMenuItem = menuItems[menuItemIndex];
         Operation selectedOperation = selectedMenuItem.getOperation();
         selectedOperation.run();
