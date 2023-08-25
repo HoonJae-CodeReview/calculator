@@ -12,21 +12,7 @@ public class Recorder {
     }
 
     public void addHistory(String expression, long result){
-        String TrimmedExpression = trimExpression(expression);
-        this.history.put(TrimmedExpression, result);
-    }
-
-    private String trimExpression(String expression){
-        StringTokenizer stringTokenizer = new StringTokenizer(expression);
-        StringBuilder stringBuilder = new StringBuilder();
-        while(true){
-            stringBuilder.append(stringTokenizer.nextToken());
-            if(!stringTokenizer.hasMoreTokens()){
-                break;
-            }
-            stringBuilder.append(' ');
-        }
-        return stringBuilder.toString();
+        this.history.put(expression, result);
     }
 
     public void displayHistory(){

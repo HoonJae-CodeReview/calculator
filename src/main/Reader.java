@@ -1,6 +1,7 @@
 package src.main;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Reader {
 
@@ -14,6 +15,19 @@ public class Reader {
             System.err.println(e);
             return "";
         }
+    }
+
+    public String trimExpression(String expression){
+        StringTokenizer stringTokenizer = new StringTokenizer(expression);
+        StringBuilder stringBuilder = new StringBuilder();
+        while(true){
+            stringBuilder.append(stringTokenizer.nextToken());
+            if(!stringTokenizer.hasMoreTokens()){
+                break;
+            }
+            stringBuilder.append(' ');
+        }
+        return stringBuilder.toString();
     }
 
 }
