@@ -34,4 +34,11 @@ public class Recorder {
         printer.print(stringBuilder);
     }
 
+    public boolean isAlreadyCalculated(String expression){
+        return this.history.containsKey(expression);
+    }
+
+    public Long getResult(String expression){
+        return this.history.get(expression);
+    }
 }

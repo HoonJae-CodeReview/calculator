@@ -32,7 +32,11 @@ public class CalculatorDriver {
         MenuItem doCalculate = new MenuItem("계산", () -> {
             String expression = reader.input();
             expression = reader.trimExpression(expression);
-            long result = calculator.calculate(expression);
+
+            long result = recorder.isAlreadyCalculated(expression)
+                    ? recorder.getResult(expression)
+                    : calculator.calculate(expression);
+
             printer.print(result);
             recorder.addHistory(expression, result);
         });
