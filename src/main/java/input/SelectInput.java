@@ -8,15 +8,15 @@ import java.io.InputStreamReader;
 
 public class SelectInput implements Input{
 
-    int select;
+    String select;
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
-    public Integer input() throws  IOException{
+    public String  input() throws  IOException{
         System.out.println("1.조회");
         System.out.printf("2.계산 \n\n");
         System.out.print("선택: ");
-        select = Integer.parseInt(bufferedReader.readLine());
+        select = bufferedReader.readLine() ;
         System.out.println();
         return select;
     }
