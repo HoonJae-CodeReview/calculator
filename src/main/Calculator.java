@@ -30,13 +30,19 @@ public class Calculator {
 
     public void run() {
         showMenu();
-        menuItems[selectMenuItemIndex()].getOperation().run();
+
+        Operation selectedOperation = menuItems[selectMenuItemIndex()].getOperation();
+        selectedOperation.run();
     }
     private void showMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         int menuItemCnt = menuItems.length;
         for(int i=0; i<menuItemCnt; i++){
-            stringBuilder.append(i+1).append(". ").append(menuItems[i].getTitle()).append('\n');
+            String title = menuItems[i].getTitle();
+            stringBuilder.append(i+1);
+            stringBuilder.append(". ");
+            stringBuilder.append(title);
+            stringBuilder.append('\n');
         }
         stringBuilder.append("\n선택 : ");
         System.out.print(stringBuilder);
@@ -49,14 +55,20 @@ public class Calculator {
 
     private void addHistory(String expression, long result){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(expression).append(" = ").append(result);
-        this.history.add(stringBuilder.toString());
+        stringBuilder.append(expression);
+        stringBuilder.append(" = ");
+        stringBuilder.append(result);
+        String history = stringBuilder.toString();
+        this.history.add(history);
     }
     private void displayHistory(){
         if(this.history.size()==0) return;
 
         StringBuilder stringBuilder = new StringBuilder();
-        this.history.forEach((string -> stringBuilder.append(string).append('\n')));
+        this.history.forEach((string -> {
+            stringBuilder.append(string);
+            stringBuilder.append('\n');
+        }));
         System.out.println(stringBuilder);
     }
 
