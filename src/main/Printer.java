@@ -1,7 +1,5 @@
 package src.main;
 
-import src.main.exception.*;
-
 public class Printer {
 
     public void print(StringBuilder stringBuilder){
