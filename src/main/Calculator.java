@@ -87,7 +87,7 @@ public class Calculator {
             char nextSymbol = stringTokenizer.nextToken().charAt(0);
             long nextValue = Long.parseLong(stringTokenizer.nextToken());
 
-            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextSymbol,nextValue,resultValue,currentSymbol,currentValue,nextSymbol,nextValue);
+//            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextSymbol,nextValue,resultValue,currentSymbol,currentValue,nextSymbol,nextValue);
 
             switch(nextSymbol){
                 case '+' :
