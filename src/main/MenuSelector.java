@@ -36,7 +36,7 @@ public class MenuSelector {
         int selectedMenuItemIndex = getIntValue(inputString) - 1;
 
         if(selectedMenuItemIndex < 0 || selectedMenuItemIndex >= menuItems.length){
-            throw new BadMenuSelectException();
+            throw new BadMenuSelectException("없는 항목입니다");
         }
 
         this.runMenuItem(selectedMenuItemIndex);
@@ -53,7 +53,7 @@ public class MenuSelector {
             return Integer.parseInt(string);
         }
         catch (NumberFormatException e){
-            throw new BadMenuSelectException();
+            throw new BadMenuSelectException("숫자를 입력해주세요");
         }
     }
 
