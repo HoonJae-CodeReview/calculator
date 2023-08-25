@@ -2,13 +2,11 @@ package src.main;
 
 import src.main.exception.BadMenuSelectException;
 
-import java.io.*;
-
 public class Main{
 
-    static MenuSelector menuSelector = new MenuSelector(initMenuItems());
+    static Reader reader = new Reader();
 
-    static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    static MenuSelector menuSelector = new MenuSelector(initMenuItems());
 
     static Calculator calculator = new Calculator();
 
@@ -20,8 +18,10 @@ public class Main{
             try{
                 menuSelector.displayMenu();
 
-                int selectedMenuItemIndex = menuSelector.inputMenuItemIndex(input());
+                String inputString = reader.input();
+                int selectedMenuItemIndex = menuSelector.inputMenuItemIndex(inputString);
                 MenuItem selectedMenuItem = menuSelector.menuItems[selectedMenuItemIndex];
+
                 Operation selectedOperation = selectedMenuItem.getOperation();
                 selectedOperation.run();
             }
@@ -37,7 +37,7 @@ public class Main{
         });
 
         MenuItem doCalculate = new MenuItem("계산", () -> {
-            String expression = input();
+            String expression = reader.input();
             long result = calculator.calculate(expression);
             System.out.println("\n" + result);
             recorder.addHistory(expression, result);
@@ -47,15 +47,6 @@ public class Main{
                 doDisplayHistory,
                 doCalculate
         };
-    }
-
-    public static String input(){
-        try{
-            return bufferedReader.readLine();
-        }
-        catch(IOException e){
-            return "";
-        }
     }
 
 }
