@@ -14,9 +14,9 @@ public class SelectInput implements Input{
     @Override
     public Integer input() throws  IOException{
         System.out.println("1.조회");
-        System.out.println("2.계산");
+        System.out.printf("2.계산 \n\n");
+        System.out.print("선택: ");
         select = Integer.parseInt(bufferedReader.readLine());
-        System.out.println("선택 " + select);
         System.out.println();
         return select;
     }
