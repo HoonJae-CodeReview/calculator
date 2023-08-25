@@ -49,7 +49,11 @@ public class Calculator {
             case '+' : return value1 + value2;
             case '-' : return value1 - value2;
             case '*' : return value1 * value2;
-            case '/' : return value1 / value2;
+            case '/' :
+                if(value2==0){
+                    throw new BadExpressionException("0으로는 나눌 수 없습니다");
+                }
+                return value1 / value2;
             default: throw new BadExpressionException();
         }
     }
