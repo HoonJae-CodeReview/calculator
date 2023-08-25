@@ -60,7 +60,7 @@ public class Calculator {
 
     public char getOperator(String string) {
         char character = string.charAt(0);
-        if(string.length()!=1 && character!='+' && character!='-' && character!='*' && character!='/') {
+        if(string.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
             throw new BadExpressionException("올바른 부호를 입력해주세요");
         }
         return character;
