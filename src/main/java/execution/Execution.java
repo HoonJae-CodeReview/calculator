@@ -35,15 +35,16 @@ public class Execution {
             }
             else if(select== Options.CALCULATE.getValue()){
                 ExpressionInput expressionInput = new ExpressionInput();
-                String Expression = expressionInput.input();
-                if(!expressionInputValidation.checkExpressionValue(Expression)){
+                String expression = expressionInput.input();
+                if(!expressionInputValidation.checkExpressionValue(expression)){
                     continue;
                 }
                 Calculator calculator = new InFixCalculator();
-                int result = calculator.calculator(Expression);
+                int result = calculator.calculator(expression);
                 Repository repository = new Repository();
                 System.out.println(result);
-                repository.store(Expression + " = " + result);
+                StringBuilder stringBuilder = new StringBuilder();
+                repository.store(expression + " = " + result);
 
             }
         }
