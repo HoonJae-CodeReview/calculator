@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class InFixCalculator implements Calculator{
 
-    private static String postfix = "";
+    private  String postfix = "";
 
 
     @Override
@@ -18,7 +18,6 @@ public class InFixCalculator implements Calculator{
 
     public String changeToPostFix(String expression){
         Stack<String> operator = new Stack();
-
         String[] splitExpression = expression.split(" ");
         Arrays.stream(splitExpression).forEach(str -> {
             String value = str;
