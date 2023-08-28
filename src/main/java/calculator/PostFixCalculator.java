@@ -34,8 +34,6 @@ public class PostFixCalculator implements Calculator{
                     secondOperand = result.pop();
                     result.push(secondOperand / firstOperand);
                     break;
-                case " ":
-                    break;
                 default:
                     result.push(Integer.parseInt(value));
             }
