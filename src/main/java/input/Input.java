@@ -8,13 +8,24 @@ import java.io.InputStreamReader;
 public class Input {
 
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    public String selectInput() throws IOException {
-        String selectInput = bufferedReader.readLine();
+    public String selectInput() {
+        String selectInput = "";
+        try {
+            selectInput = bufferedReader.readLine();
+        }
+        catch (IOException e) {
+            selectInput = "";
+        }
         return selectInput;
     }
 
-    public String expressionInput() throws  IOException {
-        String expressionInput = bufferedReader.readLine();
-        return expressionInput;
+    public String expressionInput(){
+        String expressionInput = "";
+        try {
+             expressionInput = bufferedReader.readLine();
+        } catch (IOException e) {
+            expressionInput = "";
+        }
+        return  expressionInput;
     }
 }

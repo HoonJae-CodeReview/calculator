@@ -2,8 +2,7 @@ package execution;
 
 import calculator.Calculator;
 import calculator.InFixCalculator;
-import input.ExpressionInput;
-import input.SelectInput;
+import input.Input;
 import inquire.Inquire;
 import options.Options;
 import repository.Repository;
@@ -19,23 +18,20 @@ public class Execution {
 
     private static ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
 
-
-    public static void run() throws IOException {
-
+    public static void run() {
+        Input input  = new Input();
         while(true){
-            SelectInput selectInput = new SelectInput();
-            String input = selectInput.input();
-            if(!selectValidation.checkSelectValue(input)){
+            String selectInput = input.selectInput();
+            if(!selectValidation.checkSelectValue(selectInput)){
                 continue;
             }
-            int select = Integer.parseInt(input);
+            int select = Integer.parseInt(selectInput);
             if(select== Options.CHECK.getValue()){
                 Inquire inquire = new Inquire();
                 inquire.printResult();
             }
             else if(select== Options.CALCULATE.getValue()){
-                ExpressionInput expressionInput = new ExpressionInput();
-                String expression = expressionInput.input();
+                String expression = input.expressionInput();
                 if(!expressionInputValidation.checkExpressionValue(expression)){
                     continue;
                 }
