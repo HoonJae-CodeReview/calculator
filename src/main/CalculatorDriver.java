@@ -22,6 +22,7 @@ public class CalculatorDriver {
         catch(BadMenuSelectException | BadExpressionException e) {
             printer.print(e);
         }
+        run();
     }
 
     private static MenuItem[] initMenuItems(){
