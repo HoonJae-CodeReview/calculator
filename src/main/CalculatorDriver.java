@@ -8,29 +8,12 @@ public class CalculatorDriver {
     static Reader reader = new Reader();
     static Printer printer = new Printer();
 
-    static final MenuItem[] MENU_ITEMS = initMenuItems();
-
-    static MenuSelector menuSelector = new MenuSelector(MENU_ITEMS, reader, printer);
-    static Calculator calculator = new Calculator();
-    static Recorder recorder = new Recorder(printer);
-
-    public void run(){
-        try{
-            menuSelector.displayMenu();
-            menuSelector.selectMenu();
-        }
-        catch(BadMenuSelectException | BadExpressionException e) {
-            printer.print(e);
-        }
-        run();
-    }
-
-    private static MenuItem[] initMenuItems(){
-        MenuItem doDisplayHistory = new MenuItem("조회", () -> {
+    enum Menu {
+        DISPLAY("조회", () -> {
             recorder.displayHistory();
-        });
+        }),
 
-        MenuItem doCalculate = new MenuItem("계산", () -> {
+        CALCULATE("계산", () -> {
             String expression = reader.input();
             expression = reader.trimExpression(expression);
 
@@ -42,10 +25,40 @@ public class CalculatorDriver {
             recorder.addHistory(expression, result);
         });
 
-        return new MenuItem[] {
-                doDisplayHistory,
-                doCalculate
-        };
+        private final String title;
+        private final Operation operation;
+
+        Menu(String title, Operation operation) {
+            this.title = title;
+            this.operation = operation;
+        }
+
+        public String getTitle(){
+            return this.title;
+        }
+
+        public void run(){
+            this.operation.run();
+        }
+    }
+
+    static Calculator calculator = new Calculator();
+    static Recorder recorder = new Recorder(printer);
+
+    public void run(){
+        try{
+            System.out.println(Menu.DISPLAY.getTitle());
+            System.out.println(Menu.CALCULATE.getTitle());
+
+            switch(Integer.parseInt(reader.input())){
+                case 1 : Menu.DISPLAY.run(); break;
+                case 2 : Menu.CALCULATE.run(); break;
+            }
+        }
+        catch(BadMenuSelectException | BadExpressionException e) {
+            printer.print(e);
+        }
+        run();
     }
 
 }
