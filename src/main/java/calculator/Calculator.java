@@ -2,5 +2,5 @@ package calculator;
 
 public interface Calculator {
 
-    public int calculator(String calculator);
+    public int calculate(String calculator);
 }

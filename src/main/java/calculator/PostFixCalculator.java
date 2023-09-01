@@ -11,7 +11,7 @@ public class PostFixCalculator implements Calculator{
     int firstOperand;
     int secondOperand;
     @Override
-    public int calculator(String postfixExpression){
+    public int calculate(String postfixExpression){
         Stack<Integer> result = new Stack<>();
         String[] splitPostfixExpression = postfixExpression.split(" ");
         for (String str : splitPostfixExpression) {

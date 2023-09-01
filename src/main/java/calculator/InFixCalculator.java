@@ -9,10 +9,10 @@ public class InFixCalculator implements Calculator{
 
 
     @Override
-    public int calculator(String inFixCalculator) {
+    public int calculate(String inFixCalculator) {
         String postFix = changeToPostFix(inFixCalculator);
         PostFixCalculator postFixCalculator = new PostFixCalculator();
-        int result = postFixCalculator.calculator(postFix);
+        int result = postFixCalculator.calculate(postFix);
         return  result;
     }
 
