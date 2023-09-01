@@ -40,16 +40,20 @@ public class Execution {
                     break;
 
                 case CALCULATE:
-                    String expression = input.expressionInput();
-                    if (!expressionInputValidation.checkExpressionValue(expression)) {
-                        continue;
-                    }
-                    Calculator calculator = new InFixCalculator();
-                    String result = Integer.toString(calculator.calculator(expression));
-                    Repository repository = new Repository();
-                    output.print(result);
-                    repository.store(expression, result);
+                    compute(input);
             }
         }
+    }
+
+    private static void compute(Input input) {
+        String expression = input.expressionInput();
+        if (!expressionInputValidation.checkExpressionValue(expression)) {
+            return;
+        }
+        Calculator calculator = new InFixCalculator();
+        String result = Integer.toString(calculator.calculate(expression));
+        Repository repository = new Repository();
+        output.print(result);
+        repository.store(expression, result);
     }
 }
