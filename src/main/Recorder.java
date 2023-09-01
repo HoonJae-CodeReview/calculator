@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Recorder {
 
-    HashMap<String, Long> history = new HashMap<>();
+    private HashMap<String, Long> history = new HashMap<>();
 
     public void addHistory(String expression, long result){
         this.history.put(expression, result);

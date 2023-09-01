@@ -2,11 +2,11 @@ package src.main;
 
 public class CalculatorDriver {
 
-    static Reader reader = new Reader();
-    static Printer printer = new Printer();
+    private static Reader reader = new Reader();
+    private static Printer printer = new Printer();
 
-    static Calculator calculator = new Calculator();
-    static Recorder recorder = new Recorder();
+    private static Calculator calculator = new Calculator();
+    private static Recorder recorder = new Recorder();
 
     public void run(){
         try{

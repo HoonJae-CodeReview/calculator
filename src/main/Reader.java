@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class Reader {
 
-    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public String input(){
         try{
