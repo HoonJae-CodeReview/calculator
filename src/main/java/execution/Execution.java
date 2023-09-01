@@ -3,45 +3,52 @@ package execution;
 import calculator.Calculator;
 import calculator.InFixCalculator;
 import input.Input;
-import inquire.Inquire;
+import inputView.ConsoleInputView;
+import inputView.InputView;
+import output.ConsoleOutput;
 import options.Options;
+import output.Output;
 import repository.Repository;
 import validation.ExpressionInputValidation;
 import validation.SelectValidation;
 
-import java.io.IOException;
 
 public class Execution {
 
+    private static final int CHECK = 1;
+    private static final int CALCULATE = 2;
     private static SelectValidation selectValidation = new SelectValidation();
 
+    private static InputView inputView = new ConsoleInputView();
 
     private static ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
 
+    private static Output output = new ConsoleOutput();
+
     public static void run() {
         Input input  = new Input();
-        while(true){
+        while(true) {
+            inputView.displayOptions();
             String selectInput = input.selectInput();
-            if(!selectValidation.checkSelectValue(selectInput)){
+            if (!selectValidation.checkSelectValue(selectInput)) {
                 continue;
             }
             int select = Integer.parseInt(selectInput);
-            if(select== Options.CHECK.getValue()){
-                Inquire inquire = new Inquire();
-                inquire.printResult();
-            }
-            else if(select== Options.CALCULATE.getValue()){
-                String expression = input.expressionInput();
-                if(!expressionInputValidation.checkExpressionValue(expression)){
-                    continue;
-                }
-                Calculator calculator = new InFixCalculator();
-                int result = calculator.calculator(expression);
-                Repository repository = new Repository();
-                System.out.println(result);
-                StringBuilder stringBuilder = new StringBuilder();
-                repository.store(expression + " = " + result);
+            switch (select) {
+                case CHECK:
+                    output.printOperationResult();
+                    break;
 
+                case CALCULATE:
+                    String expression = input.expressionInput();
+                    if (!expressionInputValidation.checkExpressionValue(expression)) {
+                        continue;
+                    }
+                    Calculator calculator = new InFixCalculator();
+                    String result = Integer.toString(calculator.calculator(expression));
+                    Repository repository = new Repository();
+                    output.print(result);
+                    repository.store(expression, result);
             }
         }
     }
