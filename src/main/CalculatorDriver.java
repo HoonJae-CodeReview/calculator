@@ -8,10 +8,8 @@ public class CalculatorDriver {
     static Reader reader = new Reader();
     static Printer printer = new Printer();
 
-
-
     static Calculator calculator = new Calculator();
-    static Recorder recorder = new Recorder(printer);
+    static Recorder recorder = new Recorder();
 
     public void run(){
         try{
@@ -29,7 +27,8 @@ public class CalculatorDriver {
     }
 
     public static void displayHistory(){
-        recorder.displayHistory();
+        String history = recorder.getHistory();
+        printer.print(history);
     }
 
     public static void calculate(){

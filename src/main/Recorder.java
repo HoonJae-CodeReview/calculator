@@ -5,23 +5,15 @@ import java.util.*;
 public class Recorder {
 
     HashMap<String, Long> history = new HashMap<>();
-    Printer printer;
-
-    public Recorder(Printer printer){
-        this.printer = printer;
-    }
 
     public void addHistory(String expression, long result){
         this.history.put(expression, result);
     }
 
-    public void displayHistory(){
-        if(this.history.size()==0) return;
-
+    public String getHistory(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append('\n');
 
-        for(Map.Entry<String, Long> entry: history.entrySet()){
+        for(Map.Entry<String, Long> entry: this.history.entrySet()){
             String expression = entry.getKey();
             Long result = entry.getValue();
 
@@ -31,7 +23,7 @@ public class Recorder {
             stringBuilder.append('\n');
         }
 
-        printer.print(stringBuilder);
+        return stringBuilder.toString();
     }
 
     public boolean isAlreadyCalculated(String expression){
