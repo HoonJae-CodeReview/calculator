@@ -1,10 +1,8 @@
-import execution.Execution;
-
-import java.io.IOException;
+import calculator.Calculator;
 
 public class main {
 
     public static void main(String[] args) {
-        Execution.run();
+        Calculator.run();
     }
 }

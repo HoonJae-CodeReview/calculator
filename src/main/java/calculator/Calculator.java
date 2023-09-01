@@ -1,6 +1,59 @@
 package calculator;
 
-public interface Calculator {
+import accumulator.Accumulator;
+import accumulator.InFixAccumulator;
+import input.Input;
+import inputView.ConsoleInputView;
+import inputView.InputView;
+import output.ConsoleOutput;
+import output.Output;
+import repository.Repository;
+import validation.ExpressionInputValidation;
+import validation.SelectValidation;
 
-    public int calculate(String calculator);
+
+public class Calculator {
+
+    private static final int CHECK = 1;
+    private static final int CALCULATE = 2;
+    private static SelectValidation selectValidation = new SelectValidation();
+
+    private static InputView inputView = new ConsoleInputView();
+
+    private static ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
+
+    private static Output output = new ConsoleOutput();
+
+    public static void run() {
+        Input input  = new Input();
+        while(true) {
+            inputView.displayOptions();
+            String selectInput = input.selectInput();
+            if (!selectValidation.checkSelectValue(selectInput)) {
+                continue;
+            }
+            int select = Integer.parseInt(selectInput);
+            switch (select) {
+                case CHECK:
+                    output.printOperationResult();
+                    break;
+
+                case CALCULATE:
+                    compute(input);
+                    break;
+            }
+        }
+    }
+
+    private static void compute(Input input) {
+        String expression = input.expressionInput();
+        if (!expressionInputValidation.checkExpressionValue(expression)) {
+            return;
+        }
+        Accumulator calculator = new InFixAccumulator();
+        String result = Integer.toString(calculator.calculate(expression));
+        Repository repository = new Repository();
+        output.print(result);
+        repository.store(expression, result);
+    }
 }
