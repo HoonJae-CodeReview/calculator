@@ -8,26 +8,7 @@ public class CalculatorDriver {
     static Reader reader = new Reader();
     static Printer printer = new Printer();
 
-    public enum Menu {
-        DISPLAY_HISTORY("조회", () -> displayHistory()),
-        CALCULATE("계산", () -> calculate());
 
-        private final String title;
-        private final Operation operation;
-
-        Menu(String title, Operation operation) {
-            this.title = title;
-            this.operation = operation;
-        }
-
-        public String getTitle(){
-            return this.title;
-        }
-
-        public void run(){
-            this.operation.run();
-        }
-    }
 
     static Calculator calculator = new Calculator();
     static Recorder recorder = new Recorder(printer);
@@ -48,11 +29,11 @@ public class CalculatorDriver {
         run();
     }
 
-    private static void displayHistory(){
+    public static void displayHistory(){
         recorder.displayHistory();
     }
 
-    private static void calculate(){
+    public static void calculate(){
         String expression = reader.input();
         expression = reader.trimExpression(expression);
 
