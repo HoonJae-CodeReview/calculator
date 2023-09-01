@@ -36,8 +36,8 @@ public class Calculator {
         return resultValue;
     }
 
-    public long calculateByOperator(long value1, long value2, char Operator) {
-        switch(Operator){
+    public long calculateByOperator(long value1, long value2, char operator) {
+        switch(operator){
             case '+' : return value1 + value2;
             case '-' : return value1 - value2;
             case '*' : return value1 * value2;
@@ -50,17 +50,17 @@ public class Calculator {
         return Long.MIN_VALUE;
     }
 
-    public char getOperator(String string) {
-        char character = string.charAt(0);
-        if (string.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
+    public char getOperator(String token) {
+        char character = token.charAt(0);
+        if (token.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
             throw new IllegalArgumentException("올바른 식을 입력해주세요");
         }
         return character;
     }
 
-    public long getLongValue(String string) {
+    public long getLongValue(String token) {
         try{
-            return Long.parseLong(string);
+            return Long.parseLong(token);
         }
         catch(NumberFormatException e){
             throw new IllegalArgumentException("올바른 식을 입력해주세요");
