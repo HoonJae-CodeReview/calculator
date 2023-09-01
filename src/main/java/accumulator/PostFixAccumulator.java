@@ -1,22 +1,20 @@
-package calculator;
+package accumulator;
 
-import java.util.Arrays;
 import java.util.Stack;
 
-public class PostFixCalculator implements Calculator{
-    private final String PLUS = "+";
-    private final String MINIS = "-";
-    private final String MULTIPLY = "*";
-    private final String DIVIDE = "/";
-    int firstOperand;
-    int secondOperand;
+public class PostFixAccumulator implements Accumulator {
+    private static final String PLUS = "+";
+    private static final String MINIS = "-";
+    private static final String MULTIPLY = "*";
+    private static final String DIVIDE = "/";
+    private int firstOperand;
+    private int secondOperand;
     @Override
     public int calculate(String postfixExpression){
         Stack<Integer> result = new Stack<>();
         String[] splitPostfixExpression = postfixExpression.split(" ");
         for (String str : splitPostfixExpression) {
             String value = str;
-            Operator.DIVIDE.getValue();
             switch (value) {
                 case PLUS:
                     firstOperand = result.pop();

@@ -1,9 +1,9 @@
-package calculator;
+package accumulator;
 
 import java.util.Arrays;
 import java.util.Stack;
 
-public class InFixCalculator implements Calculator{
+public class InFixAccumulator implements Accumulator {
 
     private  String postfix = "";
 
@@ -11,7 +11,7 @@ public class InFixCalculator implements Calculator{
     @Override
     public int calculate(String inFixCalculator) {
         String postFix = changeToPostFix(inFixCalculator);
-        PostFixCalculator postFixCalculator = new PostFixCalculator();
+        PostFixAccumulator postFixCalculator = new PostFixAccumulator();
         int result = postFixCalculator.calculate(postFix);
         return  result;
     }
