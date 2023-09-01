@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Repository {
 
-    LinkedHashMap<String,String> map = new LinkedHashMap<>();
+    private static LinkedHashMap<String,String> map = new LinkedHashMap<>();
 
     public void store(String expression,String result){
         map.put(expression,result);
