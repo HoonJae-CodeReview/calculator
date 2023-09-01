@@ -16,7 +16,7 @@ public class ExpressionTrimmerTest {
             "10  +  10,10 + 10",
     })
     @DisplayName("띄어쓰기가 불일치한 계산식들을 동일하게 읽을 수 있다.")
-    void testCalculate(String expression, String expected) {
+    void testExpressionTrimmer(String expression, String expected) {
         System.out.println(expression+","+expected);
         String trimmedExpression = ExpressionTrimmer.trimExpression(expression);
         Assertions.assertEquals(expected, trimmedExpression);
