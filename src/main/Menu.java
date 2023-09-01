@@ -5,9 +5,9 @@ public enum Menu {
     CALCULATE("계산", CalculatorDriver::calculate);
 
     private final String title;
-    private final Operation operation;
+    private final MenuOperation operation;
 
-    Menu(String title, Operation operation) {
+    Menu(String title, MenuOperation operation) {
         this.title = title;
         this.operation = operation;
     }
