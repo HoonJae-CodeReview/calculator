@@ -39,7 +39,7 @@ public class CalculatorDriver {
 
     public static void calculate(){
         String expression = reader.input();
-        expression = reader.trimExpression(expression);
+        expression = ExpressionTrimmer.trimExpression(expression);
 
         long result = recorder.isAlreadyCalculated(expression)
                 ? recorder.getResult(expression)
