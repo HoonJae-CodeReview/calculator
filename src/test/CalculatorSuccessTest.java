@@ -24,4 +24,18 @@ public class CalculatorSuccessTest {
         long result = calculator.calculate(expression);
         Assertions.assertEquals(expected, result);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "10 + 10 * 10, 110",
+            "10 - 10 / 10, 9",
+            "10 * 10 + 10 / 10, 101",
+            "10 / 10 - 10 * 10, -99",
+    })
+    @DisplayName("사칙연산 우선순위 준수")
+    void testCalculatePriority(String expression, long expected) {
+        Calculator calculator = new Calculator();
+        long result = calculator.calculate(expression);
+        Assertions.assertEquals(expected, result);
+    }
 }
