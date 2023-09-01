@@ -30,6 +30,9 @@ public class Calculator {
             else if (nextOperator.equals("*") || nextOperator.equals("/")){
                 currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
             }
+            else{
+                throw new IllegalArgumentException("올바른 식을 입력해주세요");
+            }
         }
         resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
 
