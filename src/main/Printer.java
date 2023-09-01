@@ -1,21 +1,13 @@
 package src.main;
 
-public class Printer {
+interface Printer {
 
-    public void print(StringBuilder stringBuilder){
-        System.out.print(stringBuilder);
-    }
-    public void print(String string){
-        System.out.print(string);
-    }
-    public void print(Long num){
-        System.out.println(num);
-    }
-    public void print(Exception e){
-        System.out.println("[!] "+e.getMessage());
-    }
+    void print(StringBuilder stringBuilder);
+    void print(String string);
+    void print(Long num);
+    void print(Exception e);
 
-    public void displayMenu(){
+    default void displayMenu(){
         StringBuilder stringBuilder = new StringBuilder().append('\n');
 
         Menu[] menus = Menu.values();
@@ -30,5 +22,4 @@ public class Printer {
         stringBuilder.append("\n선택 : ");
         print(stringBuilder);
     }
-
 }
