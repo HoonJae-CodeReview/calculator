@@ -15,8 +15,7 @@ public class CalculatorDriver {
 
     public void run(){
         try{
-            System.out.println(Menu.DISPLAY_HISTORY.getTitle());
-            System.out.println(Menu.CALCULATE.getTitle());
+            printer.displayMenu();
 
             switch(Integer.parseInt(reader.input())){
                 case 1 : Menu.DISPLAY_HISTORY.run(); break;

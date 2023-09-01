@@ -15,4 +15,20 @@ public class Printer {
         System.out.println("[!] "+e.getMessage());
     }
 
+    public void displayMenu(){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        Menu[] menus = Menu.values();
+
+        int index = 1;
+        for(Menu menu : menus){
+            stringBuilder.append(index++);
+            stringBuilder.append(". ");
+            stringBuilder.append(menu.getTitle());
+            stringBuilder.append('\n');
+        }
+        stringBuilder.append("\n선택 : ");
+        print(stringBuilder);
+    }
+
 }
