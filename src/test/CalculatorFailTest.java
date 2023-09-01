@@ -36,6 +36,7 @@ public class CalculatorFailTest {
             "0 0 0",
             "0 + 0 +",
             "+ 0 + 0",
+            "0 ++ 0",
     })
     @DisplayName("올바르지 못한 계산식에 대해 IllegalArgumentException 예외가 발생한다.")
     void testWrongExpression(String expression) {
