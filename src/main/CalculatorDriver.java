@@ -18,7 +18,7 @@ public class CalculatorDriver {
                 default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
             }
         }
-        catch(ArithmeticException | IllegalArgumentException e) {
+        catch(ArithmeticException | IllegalArgumentException e){
             printer.print(e);
         }
         run();

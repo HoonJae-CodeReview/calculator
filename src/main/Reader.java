@@ -22,7 +22,7 @@ public class Reader {
         StringBuilder stringBuilder = new StringBuilder();
         while(true){
             stringBuilder.append(stringTokenizer.nextToken());
-            if(!stringTokenizer.hasMoreTokens()){
+            if (!stringTokenizer.hasMoreTokens()){
                 break;
             }
             stringBuilder.append(' ');

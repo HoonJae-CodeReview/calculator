@@ -7,7 +7,7 @@ public class Calculator {
     public long calculate(String expression) {
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
 
-        if(stringTokenizer.countTokens()%2==0){
+        if (stringTokenizer.countTokens()%2==0){
             throw new IllegalArgumentException("올바른 식을 입력해주세요");
         }
 
@@ -22,12 +22,12 @@ public class Calculator {
 
 //            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextOperator,nextValue,resultValue,currentOperator,currentValue,nextOperator,nextValue);
 
-            if(nextOperator == '+' || nextOperator == '-'){
+            if (nextOperator == '+' || nextOperator == '-'){
                 resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
                 currentValue = nextValue;
                 currentOperator = nextOperator;
             }
-            else if(nextOperator == '*' || nextOperator == '/'){
+            else if (nextOperator == '*' || nextOperator == '/'){
                 currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
             }
         }
@@ -42,7 +42,7 @@ public class Calculator {
             case '-' : return value1 - value2;
             case '*' : return value1 * value2;
             case '/' :
-                if(value2 == 0){
+                if (value2 == 0){
                     throw new ArithmeticException("0으로 나눌 수 없습니다");
                 }
                 return value1 / value2;
@@ -52,7 +52,7 @@ public class Calculator {
 
     public char getOperator(String string) {
         char character = string.charAt(0);
-        if(string.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
+        if (string.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
             throw new IllegalArgumentException("올바른 식을 입력해주세요");
         }
         return character;
