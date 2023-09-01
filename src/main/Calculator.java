@@ -14,20 +14,20 @@ public class Calculator {
         long resultValue = 0;
 
         long currentValue = getLongValue(stringTokenizer.nextToken());
-        char currentOperator = '+';
+        String currentOperator = "+";
 
         while(stringTokenizer.hasMoreTokens()){
-            char nextOperator = getOperator(stringTokenizer.nextToken());
+            String nextOperator = stringTokenizer.nextToken();
             long nextValue = getLongValue(stringTokenizer.nextToken());
 
 //            System.out.printf("%s%d  |  %d %s %d %s %d\n",nextOperator,nextValue,resultValue,currentOperator,currentValue,nextOperator,nextValue);
 
-            if (nextOperator == '+' || nextOperator == '-'){
+            if (nextOperator.equals("+") || nextOperator.equals("-")){
                 resultValue = calculateByOperator(resultValue, currentValue, currentOperator);  // 덧셈이나 뺄셈만 수행
                 currentValue = nextValue;
                 currentOperator = nextOperator;
             }
-            else if (nextOperator == '*' || nextOperator == '/'){
+            else if (nextOperator.equals("*") || nextOperator.equals("/")){
                 currentValue = calculateByOperator(currentValue, nextValue, nextOperator);
             }
         }
@@ -36,26 +36,15 @@ public class Calculator {
         return resultValue;
     }
 
-    public long calculateByOperator(long value1, long value2, char operator) {
-        switch(operator){
-            case '+' : return value1 + value2;
-            case '-' : return value1 - value2;
-            case '*' : return value1 * value2;
-            case '/' :
-                if (value2 == 0){
-                    throw new ArithmeticException("0으로 나눌 수 없습니다");
-                }
-                return value1 / value2;
+    public long calculateByOperator(long value1, long value2, String inputOperator) {
+        for(Calculation calculation : Calculation.values()){
+            String operator = calculation.getOperator();
+            if (operator.equals(inputOperator)){
+                CalculationOperation operation = calculation.getOperation();
+                return operation.calculate(value1, value2);
+            }
         }
-        return Long.MIN_VALUE;
-    }
-
-    public char getOperator(String token) {
-        char character = token.charAt(0);
-        if (token.length()!=1 || (character!='+' && character!='-' && character!='*' && character!='/')) {
-            throw new IllegalArgumentException("올바른 식을 입력해주세요");
-        }
-        return character;
+        throw new IllegalArgumentException("올바른 식을 입력해주세요");
     }
 
     public long getLongValue(String token) {

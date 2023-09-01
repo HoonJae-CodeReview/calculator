@@ -25,38 +25,16 @@ public class CalculatorTest {
     public void testCalculateByOperator(){
         for(long i=-17; i<=17; i+=2){
             for(long j=-17; j<=17; j+=2){
-                long sum = calculator.calculateByOperator(i, j, '+');
+                long sum = calculator.calculateByOperator(i, j, "+");
                 Assertions.assertEquals(sum, i + j);
-                long sub = calculator.calculateByOperator(i, j, '-');
+                long sub = calculator.calculateByOperator(i, j, "-");
                 Assertions.assertEquals(sub, i - j);
-                long mul = calculator.calculateByOperator(i, j, '*');
+                long mul = calculator.calculateByOperator(i, j, "*");
                 Assertions.assertEquals(mul, i * j);
-                long div = calculator.calculateByOperator(i, j, '/');
+                long div = calculator.calculateByOperator(i, j, "/");
                 Assertions.assertEquals(div, i / j);
             }
         }
-    }
-
-    @Test
-    public void testGetOperator(){
-        char sum = calculator.getOperator("+");
-        Assertions.assertEquals(sum, '+');
-        char sub = calculator.getOperator("-");
-        Assertions.assertEquals(sub, '-');
-        char mul = calculator.getOperator("*");
-        Assertions.assertEquals(mul, '*');
-        char div = calculator.getOperator("/");
-        Assertions.assertEquals(div, '/');
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            calculator.getOperator("++");
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            calculator.getOperator("a");
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            calculator.getOperator("1");
-        });
     }
 
     @Test
