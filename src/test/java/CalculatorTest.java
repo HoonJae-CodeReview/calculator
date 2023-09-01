@@ -1,5 +1,4 @@
 import accumulator.Accumulator;
-import accumulator.InFixAccumulator;
 import accumulator.PostFixAccumulator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ public class CalculatorTest {
 
     @Test
     public void InFixCalculator(){
-        Accumulator calculator = new InFixAccumulator();
+        Accumulator calculator = new PostFixAccumulator();
         int expect = calculator.calculate("3 + 2 + 5 * 2 / 1 ");
         Assertions.assertEquals(15,expect);
     }

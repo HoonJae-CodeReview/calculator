@@ -1,8 +1,5 @@
 package convertor;
 
-import accumulator.Accumulator;
-import accumulator.PostFixAccumulator;
-
 import java.util.Arrays;
 import java.util.Stack;
 

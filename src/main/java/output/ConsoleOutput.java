@@ -1,9 +1,8 @@
 package output;
 
-import repository.Repository;
+
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ConsoleOutput implements Output {

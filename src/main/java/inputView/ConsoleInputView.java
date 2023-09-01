@@ -1,6 +1,5 @@
 package inputView;
 
-import input.Input;
 
 public class ConsoleInputView implements InputView {
 
