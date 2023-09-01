@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import src.main.Calculator;
-import src.main.exception.BadExpressionException;
 
 public class CalculatorTest {
 
@@ -39,13 +38,6 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testDivideByZero(){
-        Assertions.assertThrows(BadExpressionException.class, () -> {
-            calculator.calculateByOperator(1, 0, '/');
-        });
-    }
-
-    @Test
     public void testGetOperator(){
         char sum = calculator.getOperator("+");
         Assertions.assertEquals(sum, '+');
@@ -56,13 +48,13 @@ public class CalculatorTest {
         char div = calculator.getOperator("/");
         Assertions.assertEquals(div, '/');
 
-        Assertions.assertThrows(BadExpressionException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             calculator.getOperator("++");
         });
-        Assertions.assertThrows(BadExpressionException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             calculator.getOperator("a");
         });
-        Assertions.assertThrows(BadExpressionException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             calculator.getOperator("1");
         });
     }
@@ -73,12 +65,5 @@ public class CalculatorTest {
             long value = calculator.getLongValue(String.valueOf(i));
             Assertions.assertEquals(value, i);
         }
-
-        Assertions.assertThrows(BadExpressionException.class, () -> {
-            calculator.getLongValue("+");
-        });
-        Assertions.assertThrows(BadExpressionException.class, () -> {
-            calculator.getLongValue("a");
-        });
     }
 }

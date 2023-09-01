@@ -1,8 +1,5 @@
 package src.main;
 
-import src.main.exception.BadExpressionException;
-import src.main.exception.BadMenuSelectException;
-
 public class CalculatorDriver {
 
     static Reader reader = new Reader();
@@ -15,17 +12,14 @@ public class CalculatorDriver {
         try{
             printer.displayMenu();
 
-            switch(Integer.parseInt(reader.input())){
-                case 1 : Menu.DISPLAY_HISTORY.run(); break;
-                case 2 : Menu.CALCULATE.run(); break;
-                default : throw new NumberFormatException();
+            switch(reader.input()){
+                case "1" : Menu.DISPLAY_HISTORY.run(); break;
+                case "2" : Menu.CALCULATE.run(); break;
+                default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
             }
         }
-        catch(BadMenuSelectException | BadExpressionException e) {
+        catch(ArithmeticException | IllegalArgumentException e) {
             printer.print(e);
-        }
-        catch(NumberFormatException e) {
-            printer.print("올바른 숫자를 입력해주세요");
         }
         run();
     }
