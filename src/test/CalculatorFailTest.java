@@ -17,7 +17,7 @@ public class CalculatorFailTest {
             "0 / 0",
             MAX + " / 0"
     })
-    @DisplayName("0으로 나누었을 때 예외 처리")
+    @DisplayName("0으로 나누는 계산식에 대해 ArithmeticException 예외가 발생한다.")
     void testDivideByZero(String expression) {
         Calculator calculator = new Calculator();
         try{
@@ -37,7 +37,7 @@ public class CalculatorFailTest {
             "0 + 0 +",
             "+ 0 + 0",
     })
-    @DisplayName("올바르지 못한 식 예외 처리")
+    @DisplayName("올바르지 못한 계산식에 대해 IllegalArgumentException 예외가 발생한다.")
     void testWrongExpression(String expression) {
         Calculator calculator = new Calculator();
         try{

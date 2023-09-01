@@ -18,7 +18,7 @@ public class CalculatorSuccessTest {
             "10 * 10, 100",
             "10 / 10, 1"
     })
-    @DisplayName("사칙연산 수행")
+    @DisplayName("사칙연산을 수행할 수 있다.")
     void testCalculate(String expression, long expected) {
         Calculator calculator = new Calculator();
         long result = calculator.calculate(expression);
@@ -32,7 +32,7 @@ public class CalculatorSuccessTest {
             "10 * 10 + 10 / 10, 101",
             "10 / 10 - 10 * 10, -99",
     })
-    @DisplayName("사칙연산 우선순위 준수")
+    @DisplayName("사칙연산의 우선순위를 준수하며 사칙연산을 수행할 수 있다.")
     void testCalculatePriority(String expression, long expected) {
         Calculator calculator = new Calculator();
         long result = calculator.calculate(expression);
