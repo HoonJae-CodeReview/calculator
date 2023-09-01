@@ -18,7 +18,10 @@ public class CalculatorDriver {
                 default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
             }
         }
-        catch(ArithmeticException | IllegalArgumentException e){
+        catch(ArithmeticException e){
+            printer.print("[!] 0으로는 나눌 수 없습니다.\n");
+        }
+        catch(IllegalArgumentException e){
             printer.print(e);
         }
         run();
