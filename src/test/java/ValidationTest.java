@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import validation.ExpressionInputValidation;
 import validation.SelectValidation;
 
 public class ValidationTest {
@@ -26,6 +27,15 @@ public class ValidationTest {
     SelectValidation selectValidation = new SelectValidation();
     selectValidation.checkSelectValue(selectInput);
     Assertions.assertTrue(outputStreamCaptor.toString().trim().equals("잘못된 입력값 입니다."));
+  }
+
+  @ParameterizedTest
+  @DisplayName(("식 입력 테스트"))
+  @ValueSource(strings = {"3 + 1 + 2","1 * 2 / 100 + 2 - 10","!!@@##"})
+  public void inputExpressionTest(String expressionInput){
+    ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
+    boolean result = expressionInputValidation.checkExpressionValue(expressionInput);
+    Assertions.assertTrue(result);
   }
 
 
