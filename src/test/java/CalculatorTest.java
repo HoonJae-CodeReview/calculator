@@ -1,16 +1,21 @@
 import accumulator.Accumulator;
 import accumulator.PostFixAccumulator;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalculatorTest {
 
 
-    @Test
-    public void PostFixCalculator() {
+    @ParameterizedTest
+    @DisplayName("사칙연산")
+    @ValueSource(ints = {10,20,27})
+    public void PostFixCalculator(int expectResult) {
         PostFixAccumulator calculator = new PostFixAccumulator();
         int result = calculator.calculate("3 4 5 + *");
-        Assertions.assertEquals(27,result);
+        Assertions.assertEquals(expectResult,result);
     }
 
     @Test
