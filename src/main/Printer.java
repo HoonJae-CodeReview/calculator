@@ -16,7 +16,7 @@ public class Printer {
     }
 
     public void displayMenu(){
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder().append('\n');
 
         Menu[] menus = Menu.values();
 
