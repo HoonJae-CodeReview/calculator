@@ -36,7 +36,7 @@ public class Calculator {
         return resultValue;
     }
 
-    public long calculateByOperator(long value1, long value2, String inputOperator) {
+    private long calculateByOperator(long value1, long value2, String inputOperator) {
         for(Calculation calculation : Calculation.values()){
             String operator = calculation.getOperator();
             if (operator.equals(inputOperator)){
@@ -47,7 +47,7 @@ public class Calculator {
         throw new IllegalArgumentException("올바른 식을 입력해주세요");
     }
 
-    public long getLongValue(String token) {
+    private long getLongValue(String token) {
         try{
             return Long.parseLong(token);
         }
