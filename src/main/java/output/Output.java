@@ -1,10 +1,10 @@
-package inquire;
+package output;
 
 import repository.Repository;
 
 import java.util.List;
 
-public class Inquire {
+public class Output {
 
     private Repository repository = new Repository();
 
