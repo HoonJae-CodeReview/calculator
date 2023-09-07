@@ -2,7 +2,8 @@ package src.main;
 
 import java.util.StringTokenizer;
 
-public class ExpressionTrimmer {
+public final class ExpressionTrimmer {
+
     public static String trimExpression(String expression){
         StringTokenizer stringTokenizer = new StringTokenizer(expression);
         StringBuilder stringBuilder = new StringBuilder();
