@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Recorder {
 
-    private LinkedHashMap<String, Long> history = new LinkedHashMap<>();
+    private Map<String, Long> history = new LinkedHashMap<>();
 
     public void addHistory(String expression, long result){
         this.history.put(expression, result);
