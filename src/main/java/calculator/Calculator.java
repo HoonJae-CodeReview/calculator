@@ -15,17 +15,17 @@ import validation.SelectValidation;
 
 public class Calculator {
 
-  private static final int CHECK = 1;
-  private static final int CALCULATE = 2;
-  private static SelectValidation selectValidation = new SelectValidation();
+  private final int CHECK = 1;
+  private final int CALCULATE = 2;
+  private SelectValidation selectValidation = new SelectValidation();
 
-  private static InputView inputView = new ConsoleInputView();
+  private InputView inputView = new ConsoleInputView();
 
-  private static ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
+  private ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
 
-  private static Output output = new ConsoleOutput();
+  private Output output = new ConsoleOutput();
 
-  public static void run() {
+  public void run() {
     Input input = new Input();
     while (true) {
       inputView.displayOptions();
@@ -47,7 +47,7 @@ public class Calculator {
     }
   }
 
-  private static void compute(String expression) {
+  private void compute(String expression) {
     if (!expressionInputValidation.checkExpressionValue(expression)) {
       return;
     }
