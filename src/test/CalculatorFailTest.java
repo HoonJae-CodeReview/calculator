@@ -8,6 +8,8 @@ import src.main.Calculator;
 
 public class CalculatorFailTest {
 
+    private Calculator calculator = new Calculator();
+
     private final long MIN = Long.MIN_VALUE;
     private final long MAX = Long.MAX_VALUE;
 
@@ -19,7 +21,6 @@ public class CalculatorFailTest {
     })
     @DisplayName("0으로 나누는 계산식에 대해 ArithmeticException 예외가 발생한다.")
     void testDivideByZero(String expression) {
-        Calculator calculator = new Calculator();
         Assertions.assertThrows(ArithmeticException.class, () -> {
             calculator.calculate(expression);
         });
@@ -37,7 +38,6 @@ public class CalculatorFailTest {
     })
     @DisplayName("올바르지 못한 계산식에 대해 IllegalArgumentException 예외가 발생한다.")
     void testWrongExpression(String expression) {
-        Calculator calculator = new Calculator();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             calculator.calculate(expression);
         });

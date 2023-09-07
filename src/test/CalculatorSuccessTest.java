@@ -8,6 +8,8 @@ import src.main.Calculator;
 
 public class CalculatorSuccessTest {
 
+    private Calculator calculator = new Calculator();
+
     private final long MIN = Long.MIN_VALUE;
     private final long MAX = Long.MAX_VALUE;
 
@@ -20,7 +22,6 @@ public class CalculatorSuccessTest {
     })
     @DisplayName("사칙연산을 수행할 수 있다.")
     void testCalculate(String expression, long expected) {
-        Calculator calculator = new Calculator();
         long result = calculator.calculate(expression);
         Assertions.assertEquals(expected, result);
     }
@@ -34,7 +35,6 @@ public class CalculatorSuccessTest {
     })
     @DisplayName("사칙연산의 우선순위를 준수하며 사칙연산을 수행할 수 있다.")
     void testCalculatePriority(String expression, long expected) {
-        Calculator calculator = new Calculator();
         long result = calculator.calculate(expression);
         Assertions.assertEquals(expected, result);
     }
