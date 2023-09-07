@@ -1,5 +1,7 @@
 package src.main;
 
+import java.util.stream.Stream;
+
 public enum Calculation {
     ADD("+", (value1, value2) -> value1 + value2),
     SUB("-", (value1, value2) -> value1 - value2),
@@ -14,11 +16,14 @@ public enum Calculation {
         this.operation = operation;
     }
 
-    public String getOperator(){
-        return this.operator;
-    }
-
-    public CalculationOperation getOperation(){
-        return this.operation;
+    public static CalculationOperation findOperationByOperator(String findingOperator){
+        return Stream.of(Calculation.values())
+                .filter(calculation -> {
+                    String operator = calculation.operator;
+                    return operator.equals(findingOperator);
+                })
+                .findFirst()
+                .get()
+                .operation;
     }
 }

@@ -41,15 +41,8 @@ public class Calculator {
     }
 
     private long calculateByOperator(long value1, long value2, String inputOperator) {
-        return Stream.of(Calculation.values())
-                .filter(calculation -> {
-                    String operator = calculation.getOperator();
-                    return operator.equals(inputOperator);
-                })
-                .findFirst()
-                .get()
-                .getOperation()
-                .calculate(value1, value2);
+        CalculationOperation operation = Calculation.findOperationByOperator(inputOperator);
+        return operation.calculate(value1, value2);
     }
 
     private long getLongValue(String token) {
