@@ -14,11 +14,14 @@ public class CalculatorFailTest {
     private final long MAX = Long.MAX_VALUE;
 
     @ParameterizedTest
-    @CsvSource({
-            MIN + " / 0",
-            "0 / 0",
-            MAX + " / 0"
-    })
+    @CsvSource(
+            value = {
+                MIN + " / 0",
+                "0 / 0",
+                MAX + " / 0"
+            },
+            delimiter = ','
+    )
     @DisplayName("0으로 나누는 계산식에 대해 ArithmeticException 예외가 발생한다.")
     void testDivideByZero(String expression) {
         Assertions.assertThrows(ArithmeticException.class, () -> {
@@ -27,7 +30,8 @@ public class CalculatorFailTest {
     }
 
     @ParameterizedTest
-    @CsvSource({
+    @CsvSource(
+            value = {
             "0 + +",
             "+ 0 +",
             "+ + 0",
@@ -35,7 +39,9 @@ public class CalculatorFailTest {
             "0 + 0 +",
             "+ 0 + 0",
             "0 ++ 0",
-    })
+            },
+            delimiter = ','
+    )
     @DisplayName("올바르지 못한 계산식에 대해 IllegalArgumentException 예외가 발생한다.")
     void testWrongExpression(String expression) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
