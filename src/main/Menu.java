@@ -2,7 +2,8 @@ package src.main;
 
 public enum Menu {
     DISPLAY_HISTORY("조회", CalculatorDriver::displayHistory),
-    CALCULATE("계산", CalculatorDriver::calculate);
+    CALCULATE("계산", CalculatorDriver::calculate),
+    STOP("종료", CalculatorDriver::stop);
 
     private final String title;
     private final MenuOperation operation;

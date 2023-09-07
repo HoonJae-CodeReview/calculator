@@ -7,12 +7,14 @@ public class CalculatorDriver {
     private static final Calculator calculator = new Calculator();
     private static final Recorder recorder = new Recorder();
 
+    private static boolean isRunning = true;
+
     public CalculatorDriver(View view){
         this.view = view;
     }
 
     public void run(){
-        while(true){
+        while(isRunning){
             try{
                 view.displayMenu();
                 runMenu(view.input());
@@ -30,6 +32,7 @@ public class CalculatorDriver {
         switch(selectedMenu){
             case "1" : Menu.DISPLAY_HISTORY.run(); break;
             case "2" : Menu.CALCULATE.run(); break;
+            case "3" : Menu.STOP.run(); break;
             default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
         }
     }
@@ -49,6 +52,10 @@ public class CalculatorDriver {
 
         view.print(result);
         recorder.addHistory(expression, result);
+    }
+
+    public static void stop(){
+        isRunning = false;
     }
 
 }
