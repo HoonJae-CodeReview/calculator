@@ -10,7 +10,7 @@ public class Recorder {
         this.history.put(expression, result);
     }
 
-    public String getHistory(){
+    public String getHistoryToString(){
         StringBuilder stringBuilder = new StringBuilder();
 
         history.forEach((expression, result) -> {

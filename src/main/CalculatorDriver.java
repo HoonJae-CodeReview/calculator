@@ -31,7 +31,7 @@ public class CalculatorDriver {
     }
 
     public static void displayHistory(){
-        String history = recorder.getHistory();
+        String history = recorder.getHistoryToString();
         view.print(history);
     }
 
