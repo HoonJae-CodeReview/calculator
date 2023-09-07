@@ -20,8 +20,11 @@ public class ExpressionTrimmerTest {
     )
     @DisplayName("띄어쓰기가 불일치한 계산식들을 동일하게 읽을 수 있다.")
     void testExpressionTrimmer(String expression, String expected) {
-        System.out.println(expression+","+expected);
+
+        // when
         String trimmedExpression = ExpressionTrimmer.trimExpression(expression);
+
+        // then
         Assertions.assertEquals(expected, trimmedExpression);
     }
 }

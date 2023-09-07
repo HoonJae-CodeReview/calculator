@@ -25,7 +25,11 @@ public class CalculatorSuccessTest {
     )
     @DisplayName("사칙연산을 수행할 수 있다.")
     void testCalculate(String expression, long expected) {
+
+        //when
         long result = calculator.calculate(expression);
+
+        //then
         Assertions.assertEquals(expected, result);
     }
 
@@ -41,7 +45,11 @@ public class CalculatorSuccessTest {
     )
     @DisplayName("사칙연산의 우선순위를 준수하며 사칙연산을 수행할 수 있다.")
     void testCalculatePriority(String expression, long expected) {
+
+        //when
         long result = calculator.calculate(expression);
+
+        //then
         Assertions.assertEquals(expected, result);
     }
 }
