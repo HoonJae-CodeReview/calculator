@@ -41,7 +41,7 @@ public class RecorderTest {
         String expected = "1 + 1 = 2\n";
 
         // when
-        String history = recorder.getHistory();
+        String history = recorder.getHistoryToString();
 
         // then
         Assertions.assertEquals(expected, history);
@@ -58,7 +58,7 @@ public class RecorderTest {
         String expected = "2 + 1 = 3\n1 + 1 = 2\n3 + 1 = 4\n";
 
         // when
-        String history = recorder.getHistory();
+        String history = recorder.getHistoryToString();
 
         // then
         Assertions.assertEquals(expected, history);
