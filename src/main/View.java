@@ -1,4 +1,4 @@
 package src.main;
 
-public abstract class View implements Reader, Printer{
+public interface View extends Reader, Printer {
 }
