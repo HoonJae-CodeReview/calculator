@@ -13,15 +13,12 @@ public class Recorder {
     public String getHistory(){
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(Map.Entry<String, Long> entry: this.history.entrySet()){
-            String expression = entry.getKey();
-            Long result = entry.getValue();
-
+        history.forEach((expression, result) -> {
             stringBuilder.append(expression);
             stringBuilder.append(" = ");
             stringBuilder.append(result);
             stringBuilder.append('\n');
-        }
+        });
 
         return stringBuilder.toString();
     }
