@@ -1,6 +1,7 @@
 package src.main;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Calculator {
 
@@ -40,14 +41,15 @@ public class Calculator {
     }
 
     private long calculateByOperator(long value1, long value2, String inputOperator) {
-        for(Calculation calculation : Calculation.values()){
-            String operator = calculation.getOperator();
-            if (operator.equals(inputOperator)){
-                CalculationOperation operation = calculation.getOperation();
-                return operation.calculate(value1, value2);
-            }
-        }
-        throw new IllegalArgumentException("올바른 식을 입력해주세요");
+        return Stream.of(Calculation.values())
+                .filter(calculation -> {
+                    String operator = calculation.getOperator();
+                    return operator.equals(inputOperator);
+                })
+                .findFirst()
+                .get()
+                .getOperation()
+                .calculate(value1, value2);
     }
 
     private long getLongValue(String token) {
