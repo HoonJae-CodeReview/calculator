@@ -12,22 +12,26 @@ public class CalculatorDriver {
     }
 
     public void run(){
-        try{
-            view.displayMenu();
-
-            switch(view.input()){
-                case "1" : Menu.DISPLAY_HISTORY.run(); break;
-                case "2" : Menu.CALCULATE.run(); break;
-                default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
+        while(true){
+            try{
+                view.displayMenu();
+                runMenu(view.input());
+            }
+            catch(ArithmeticException e){
+                view.print("[!] 0으로는 나눌 수 없습니다.\n");
+            }
+            catch(IllegalArgumentException e){
+                view.print(e);
             }
         }
-        catch(ArithmeticException e){
-            view.print("[!] 0으로는 나눌 수 없습니다.\n");
+    }
+
+    private void runMenu(String selectedMenu){
+        switch(selectedMenu){
+            case "1" : Menu.DISPLAY_HISTORY.run(); break;
+            case "2" : Menu.CALCULATE.run(); break;
+            default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
         }
-        catch(IllegalArgumentException e){
-            view.print(e);
-        }
-        run();
     }
 
     public static void displayHistory(){
