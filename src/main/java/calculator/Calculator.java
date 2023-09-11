@@ -9,19 +9,16 @@ import inputView.InputView;
 import output.ConsoleOutput;
 import output.Output;
 import repository.Repository;
-import validation.ExpressionInputValidation;
-import validation.SelectValidation;
+import util.PatternValidator;
 
 
 public class Calculator {
 
   private final int CHECK = 1;
   private final int CALCULATE = 2;
-  private SelectValidation selectValidation = new SelectValidation();
 
   private InputView inputView = new ConsoleInputView();
 
-  private ExpressionInputValidation expressionInputValidation = new ExpressionInputValidation();
 
   private Output output = new ConsoleOutput();
 
@@ -30,9 +27,7 @@ public class Calculator {
     while (true) {
       inputView.displayOptions();
       String selectInput = input.selectInput();
-      if (!selectValidation.checkSelectValue(selectInput)) {
-        continue;
-      }
+      PatternValidator.checkSelectValue(selectInput);
       int select = Integer.parseInt(selectInput);
       switch (select) {
         case CHECK:
@@ -48,9 +43,7 @@ public class Calculator {
   }
 
   private void compute(String expression) {
-    if (!expressionInputValidation.checkExpressionValue(expression)) {
-      return;
-    }
+    PatternValidator.checkExpressionValue(expression);
     InfixToPostfixConverter infixToPostfixConverter = new InfixToPostfixConverter();
     String postFixExpression = infixToPostfixConverter.changeToPostFix(expression);
     Accumulator calculator = new PostFixAccumulator();
