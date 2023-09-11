@@ -4,6 +4,7 @@ import accumulator.Accumulator;
 import accumulator.PostFixAccumulator;
 import convertor.InfixToPostfixConverter;
 import input.ConsoleInput;
+import java.util.List;
 import output.ConsoleOutput;
 import output.Output;
 import repository.Repository;
@@ -37,7 +38,8 @@ public class Calculator {
   private void selectOptions(ConsoleInput input, int select) {
     switch (select) {
       case CHECK:
-        output.printOperationResult();
+        List<String> result = repository.getResult();
+        output.print(result);
         break;
 
       case CALCULATE:

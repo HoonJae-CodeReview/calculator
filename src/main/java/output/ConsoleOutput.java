@@ -1,21 +1,14 @@
 package output;
 
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+
+import java.util.List;
 
 public class ConsoleOutput implements Output {
 
   @Override
-  public void printOperationResult() {
-    LinkedHashMap<String, String> result = repository.getResult();
-    StringBuilder stringBuilder = new StringBuilder();
-    for (Map.Entry<String, String> entry : result.entrySet()) {
-      String key = entry.getKey();
-      String value = entry.getValue();
-      stringBuilder.append(key).append(" = ").append(value).append("\n");
-    }
-    System.out.println(stringBuilder);
+  public void print(List<String> result) {
+    result.stream().forEach(System.out::println);
   }
 
   @Override

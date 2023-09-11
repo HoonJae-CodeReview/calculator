@@ -1,18 +1,20 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class Repository {
 
-  private LinkedHashMap<String, String> map = new LinkedHashMap<>();
+  private List<String> list = new ArrayList<>();
 
   public void store(String expression, String result) {
-    map.put(expression, result);
+    list.add(expression + result);
 
   }
 
-  public LinkedHashMap<String, String> getResult() {
-    return map;
+  public List<String> getResult() {
+    return list;
   }
 
 }
