@@ -20,11 +20,15 @@ public class Calculator {
   public void run() {
     ConsoleInput input = new ConsoleInput();
     while (true) {
-      output.displayOptions();
-      String selectInput = input.SelectInput();
-      PatternValidator.checkSelectValue(selectInput);
-      int select = Integer.parseInt(selectInput);
-      selectOptions(input, select);
+      try {
+        output.displayOptions();
+        String selectInput = input.SelectInput();
+        PatternValidator.checkSelectValue(selectInput);
+        int select = Integer.parseInt(selectInput);
+        selectOptions(input, select);
+      }catch (IllegalArgumentException e){
+          output.print(e.getMessage());
+      }
     }
   }
 
