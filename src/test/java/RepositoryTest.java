@@ -10,7 +10,7 @@ public class RepositoryTest {
 
 
   @ParameterizedTest
-  @CsvSource({"2 + 3, 5", "4 * 5, 20", "10 / 2, 5"})
+  @CsvSource(value = {"2 + 3, 5 : 4 * 5, 20", "10 / 2 : 5"},delimiter = ':')
   public void testStoreAndGetResult(String expression, String result) {
     repository = new Repository();
     repository.store(expression, result);
