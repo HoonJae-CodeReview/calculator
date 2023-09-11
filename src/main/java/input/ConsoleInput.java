@@ -5,11 +5,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleInput {
+public class ConsoleInput implements Input {
 
   BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-  public String SelectInput() {
+  @Override
+  public String selectInput() {
     String selectInput = "";
     try {
       selectInput = bufferedReader.readLine();
@@ -19,7 +20,8 @@ public class ConsoleInput {
     return selectInput;
   }
 
-  public String ExpressionInput() {
+  @Override
+  public String expressionInput() {
     String expressionInput = "";
     try {
       expressionInput = bufferedReader.readLine();
