@@ -47,9 +47,12 @@ public class InfixToPostfixConverter {
   }
 
   private void compareOperatorPriority(Stack<String> operatorStack,int currentOperatorPriority) {
-    Operator topStackOperator = Operator.stringToOperator(operatorStack.peek().substring(0, 1));
-    int topStackOperatorPriority = operatorPriority(topStackOperator);
-    while (!operatorStack.isEmpty() && topStackOperatorPriority >= currentOperatorPriority) {
+    while (!operatorStack.isEmpty()) {
+      Operator topStackOperator = Operator.stringToOperator(operatorStack.peek().substring(0, 1));
+      int topStackOperatorPriority = operatorPriority(topStackOperator);
+      if(topStackOperatorPriority < currentOperatorPriority){
+        break;
+      }
       postfix.append(operatorStack.pop());
     }
   }
