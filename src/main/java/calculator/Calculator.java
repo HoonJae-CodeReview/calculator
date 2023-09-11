@@ -3,7 +3,7 @@ package calculator;
 import accumulator.Accumulator;
 import accumulator.PostFixAccumulator;
 import convertor.InfixToPostfixConverter;
-import input.Input;
+import input.ConsoleInput;
 import output.ConsoleOutput;
 import output.Output;
 import repository.Repository;
@@ -18,24 +18,24 @@ public class Calculator {
   private Output output = new ConsoleOutput();
 
   public void run() {
-    Input input = new Input();
+    ConsoleInput input = new ConsoleInput();
     while (true) {
       output.displayOptions();
-      String selectInput = input.selectInput();
+      String selectInput = input.SelectInput();
       PatternValidator.checkSelectValue(selectInput);
       int select = Integer.parseInt(selectInput);
       selectOptions(input, select);
     }
   }
 
-  private void selectOptions(Input input, int select) {
+  private void selectOptions(ConsoleInput input, int select) {
     switch (select) {
       case CHECK:
         output.printOperationResult();
         break;
 
       case CALCULATE:
-        String expression = input.expressionInput();
+        String expression = input.ExpressionInput();
         compute(expression);
         break;
     }
