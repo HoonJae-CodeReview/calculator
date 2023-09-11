@@ -17,6 +17,8 @@ public class Calculator {
 
   private Output output = new ConsoleOutput();
 
+  private Repository repository = new Repository();
+
   public void run() {
     ConsoleInput input = new ConsoleInput();
     while (true) {
@@ -26,8 +28,8 @@ public class Calculator {
         PatternValidator.checkSelectValue(selectInput);
         int select = Integer.parseInt(selectInput);
         selectOptions(input, select);
-      }catch (IllegalArgumentException e){
-          output.print(e.getMessage());
+      } catch (IllegalArgumentException e) {
+        output.print(e.getMessage());
       }
     }
   }
@@ -51,7 +53,6 @@ public class Calculator {
     String postFixExpression = infixToPostfixConverter.changeToPostFix(expression);
     Accumulator calculator = new PostFixAccumulator();
     String result = Integer.toString(calculator.calculate(postFixExpression));
-    Repository repository = new Repository();
     output.print(result);
     repository.store(expression, result);
   }
