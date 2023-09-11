@@ -4,8 +4,6 @@ import accumulator.Accumulator;
 import accumulator.PostFixAccumulator;
 import convertor.InfixToPostfixConverter;
 import input.Input;
-import inputView.ConsoleInputView;
-import inputView.InputView;
 import output.ConsoleOutput;
 import output.Output;
 import repository.Repository;
@@ -17,28 +15,29 @@ public class Calculator {
   private final int CHECK = 1;
   private final int CALCULATE = 2;
 
-  private InputView inputView = new ConsoleInputView();
-
-
   private Output output = new ConsoleOutput();
 
   public void run() {
     Input input = new Input();
     while (true) {
-      inputView.displayOptions();
+      output.displayOptions();
       String selectInput = input.selectInput();
       PatternValidator.checkSelectValue(selectInput);
       int select = Integer.parseInt(selectInput);
-      switch (select) {
-        case CHECK:
-          output.printOperationResult();
-          break;
+      selectOptions(input, select);
+    }
+  }
 
-        case CALCULATE:
-          String expression = input.expressionInput();
-          compute(expression);
-          break;
-      }
+  private void selectOptions(Input input, int select) {
+    switch (select) {
+      case CHECK:
+        output.printOperationResult();
+        break;
+
+      case CALCULATE:
+        String expression = input.expressionInput();
+        compute(expression);
+        break;
     }
   }
 

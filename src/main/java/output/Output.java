@@ -10,5 +10,5 @@ public interface Output {
 
   public void print(String msg);
 
-
+  public void displayOptions();
 }
