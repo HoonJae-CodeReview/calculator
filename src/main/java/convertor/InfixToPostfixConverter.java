@@ -2,43 +2,46 @@ package convertor;
 
 import java.util.Arrays;
 import java.util.Stack;
+import operator.Operator;
 
 public class InfixToPostfixConverter {
 
   private String postfix = "";
 
   public String changeToPostFix(String expression) {
-    Stack<String> operator = new Stack();
+    Stack<String> operatorStack = new Stack();
     String[] splitExpression = expression.split(" ");
     Arrays.stream(splitExpression).forEach(str -> {
-      String value = str;
-      int operatorPriority = operatorPriority(value);
+      Operator operator = Operator.stringToOperator(str);
+      int operatorPriority = operatorPriority(operator);
+      int value = Integer.parseInt(str);
       if (operatorPriority == -1) {
         postfix += value + " ";
-      } else if (operator.isEmpty()) {
-        operator.add((value + " "));
+      } else if (operatorStack.isEmpty()) {
+        operatorStack.add((value + " "));
       } else {
-        while (!operator.isEmpty()
-            && operatorPriority(operator.peek().substring(0, 1)) >= operatorPriority) {
-          postfix += operator.pop();
+        while (!operatorStack.isEmpty()
+            && operatorPriority(Operator.stringToOperator(operatorStack.peek().substring(0, 1)))
+            >= operatorPriority) {
+          postfix += operatorStack.pop();
         }
-        operator.add((value + " "));
+        operatorStack.add((value + " "));
       }
     });
-    while (!operator.isEmpty()) {
-      postfix += operator.pop();
+    while (!operatorStack.isEmpty()) {
+      postfix += operatorStack.pop();
     }
     return postfix;
   }
 
 
-  public int operatorPriority(String operator) {
+  public int operatorPriority(Operator operator) {
     switch (operator) {
-      case "+":
-      case "-":
+      case PLUS:
+      case MINUS:
         return 1;
-      case "*":
-      case "/":
+      case MULTIPLY:
+      case DIVIDE:
         return 2;
     }
     return -1;
