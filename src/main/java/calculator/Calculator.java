@@ -13,7 +13,7 @@ import util.PatternValidator;
 
 public class Calculator {
 
-  private final int CHECK = 1;
+  private final int INQUIRY = 1;
   private final int CALCULATE = 2;
 
   private Output output = new ConsoleOutput();
@@ -37,7 +37,7 @@ public class Calculator {
 
   private void selectOptions(ConsoleInput input, int select) {
     switch (select) {
-      case CHECK:
+      case INQUIRY:
         List<String> result = repository.getResult();
         output.print(result);
         break;
