@@ -25,7 +25,7 @@ public class Calculator {
     while (true) {
       try {
         output.displayOptions();
-        String selectInput = input.SelectInput();
+        String selectInput = input.selectInput();
         PatternValidator.checkSelectValue(selectInput);
         int select = Integer.parseInt(selectInput);
         selectOptions(input, select);
@@ -43,7 +43,7 @@ public class Calculator {
         break;
 
       case CALCULATE:
-        String expression = input.ExpressionInput();
+        String expression = input.expressionInput();
         compute(expression);
         break;
     }

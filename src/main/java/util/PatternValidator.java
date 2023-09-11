@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 
 public class PatternValidator {
 
-  private static final Pattern EXPRESSIONREGEX = Pattern.compile("^\\d+(?: \\+ \\d+| - \\d+| \\* \\d+| \\/ \\d+)*$");
+  private static final Pattern EXPRESSIONREGEX = Pattern.compile(
+      "^\\d+(?: \\+ \\d+| - \\d+| \\* \\d+| \\/ \\d+)*$");
 
   private static final Pattern OPTIONREGEX = Pattern.compile("^[12]+$");
 
@@ -14,7 +15,7 @@ public class PatternValidator {
   public static boolean checkExpressionValue(String expression) {
     Matcher matcher = EXPRESSIONREGEX.matcher(expression);
     if (!matcher.matches()) {
-      throw  new IllegalArgumentException("잘못된 식 입력입니다.");
+      throw new IllegalArgumentException("잘못된 식 입력입니다.");
     }
     return true;
   }
@@ -23,15 +24,15 @@ public class PatternValidator {
   public static boolean checkSelectValue(String select) {
     Matcher matcher = OPTIONREGEX.matcher(select);
     if (!matcher.matches()) {
-      throw  new IllegalArgumentException("잘못된 옵션 선택입니다");
+      throw new IllegalArgumentException("잘못된 옵션 선택입니다");
     }
     return true;
   }
 
-  public static boolean checkOperatorValue(String operator){
+  public static boolean checkOperatorValue(String operator) {
     Matcher matcher = OPERATORREGEX.matcher(operator);
     if (!matcher.matches()) {
-      return  false;
+      return false;
     }
     return true;
   }

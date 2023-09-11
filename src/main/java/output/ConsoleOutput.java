@@ -1,7 +1,6 @@
 package output;
 
 
-
 import java.util.List;
 
 public class ConsoleOutput implements Output {

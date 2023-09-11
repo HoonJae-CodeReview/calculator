@@ -22,7 +22,7 @@ public class PostFixAccumulator implements Accumulator {
   }
 
   private void processToken(Stack<Integer> result, String str) {
-    if(PatternValidator.checkOperatorValue(str)){
+    if (PatternValidator.checkOperatorValue(str)) {
       processOperator(result, str);
     } else if (!PatternValidator.checkOperatorValue(str)) {
       processOperand(result, str);

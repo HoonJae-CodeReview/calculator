@@ -9,7 +9,7 @@ public class ChangToPostfixTest {
   @ParameterizedTest
   @DisplayName("중위 표기식 후위 표기식 변환")
   @CsvSource(value = {"7 * 4 / 2 + 3 - 1 :'7 4 * 2 / 3 + 1 - '",
-      "9 - 5 * 2 + 6 / 3: '9 5 2 * - 6 3 / + '"},delimiter = ':')
+      "9 - 5 * 2 + 6 / 3: '9 5 2 * - 6 3 / + '"}, delimiter = ':')
   public void InfixToPostfixTest(String infixExpression, String postFinExpression) {
     InfixToPostfixConverter calculator = new InfixToPostfixConverter();
     String result = calculator.changeToPostFix(infixExpression);

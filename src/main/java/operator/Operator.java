@@ -13,9 +13,9 @@ public enum Operator {
     return this.value;
   }
 
-  public static Operator stringToOperator(String value){
-    for(Operator operator: Operator.values()){
-      if(operator.getValue().equals(value)) {
+  public static Operator stringToOperator(String value) {
+    for (Operator operator : Operator.values()) {
+      if (operator.getValue().equals(value)) {
         return operator;
       }
     }

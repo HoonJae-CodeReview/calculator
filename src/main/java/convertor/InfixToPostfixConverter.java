@@ -38,19 +38,20 @@ public class InfixToPostfixConverter {
   private void handleOperator(Stack<String> operatorStack, String token) {
     Operator currentOperator = Operator.stringToOperator(token);
     int currentOperatorPriority = operatorPriority(currentOperator);
-    setOperatorToOperatorStack(operatorStack, token,currentOperatorPriority);
+    setOperatorToOperatorStack(operatorStack, token, currentOperatorPriority);
   }
 
-  private void setOperatorToOperatorStack(Stack<String> operatorStack, String token,int currentOperatorPriority) {
-    compareOperatorPriority(operatorStack,currentOperatorPriority);
+  private void setOperatorToOperatorStack(Stack<String> operatorStack, String token,
+      int currentOperatorPriority) {
+    compareOperatorPriority(operatorStack, currentOperatorPriority);
     operatorStack.add((token + " "));
   }
 
-  private void compareOperatorPriority(Stack<String> operatorStack,int currentOperatorPriority) {
+  private void compareOperatorPriority(Stack<String> operatorStack, int currentOperatorPriority) {
     while (!operatorStack.isEmpty()) {
       Operator topStackOperator = Operator.stringToOperator(operatorStack.peek().substring(0, 1));
       int topStackOperatorPriority = operatorPriority(topStackOperator);
-      if(topStackOperatorPriority < currentOperatorPriority){
+      if (topStackOperatorPriority < currentOperatorPriority) {
         break;
       }
       postfix.append(operatorStack.pop());
