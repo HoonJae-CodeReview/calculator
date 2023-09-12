@@ -14,7 +14,7 @@ public class Repository {
   }
 
   public List<String> getResult() {
-    return list;
+    return new ArrayList<>(list);
   }
 
 }
