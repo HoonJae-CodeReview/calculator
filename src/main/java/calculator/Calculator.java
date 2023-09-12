@@ -51,11 +51,21 @@ public class Calculator {
 
   private void compute(String expression) {
     PatternValidator.checkExpressionValue(expression);
-    InfixToPostfixConverter infixToPostfixConverter = new InfixToPostfixConverter();
-    String postFixExpression = infixToPostfixConverter.changeToPostFix(expression);
-    Accumulator calculator = new PostFixAccumulator();
-    String result = Integer.toString(calculator.calculate(postFixExpression));
+    String postFixExpression = convertToPostfixExpression(expression);
+    String result = basicOperation(postFixExpression);
     output.print(result);
     repository.store(expression, result);
+  }
+
+  private String basicOperation(String postFixExpression) {
+    Accumulator calculator = new PostFixAccumulator();
+    String result = Integer.toString(calculator.calculate(postFixExpression));
+    return result;
+  }
+
+  private String convertToPostfixExpression(String expression) {
+    InfixToPostfixConverter infixToPostfixConverter = new InfixToPostfixConverter();
+    String postFixExpression = infixToPostfixConverter.changeToPostFix(expression);
+    return postFixExpression;
   }
 }
