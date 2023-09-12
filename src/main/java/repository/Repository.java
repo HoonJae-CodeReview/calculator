@@ -8,7 +8,8 @@ public class Repository {
   private List<String> list = new ArrayList<>();
 
   public void store(String expression, String result) {
-    list.add(expression + result);
+    StringBuilder formattedExpression = new StringBuilder(expression).append(" = ").append(result);
+    list.add(formattedExpression.toString());
 
   }
 
