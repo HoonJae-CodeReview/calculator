@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class ConsoleInput implements Input {
 
-  BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+  private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
   @Override
   public String selectInput() {
