@@ -1,7 +1,7 @@
 package src.main;
 
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.function.BiFunction;
 
 public class Calculator {
 
@@ -41,8 +41,8 @@ public class Calculator {
     }
 
     private long calculateByOperator(long value1, long value2, String inputOperator) {
-        CalculationOperation operation = Calculation.findOperationByOperator(inputOperator);
-        return operation.calculate(value1, value2);
+        BiFunction<Long, Long, Long> operation = Calculation.findOperationByOperator(inputOperator);
+        return operation.apply(value1, value2);
     }
 
     private long getLongValue(String token) {

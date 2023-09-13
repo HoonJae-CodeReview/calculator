@@ -1,5 +1,6 @@
 package src.main;
 
+import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
 public enum Calculation {
@@ -9,14 +10,14 @@ public enum Calculation {
     DIV("/", (value1, value2) -> value1 / value2);
 
     private final String operator;
-    private final CalculationOperation operation;
+    private final BiFunction<Long, Long, Long> operation;
 
-    Calculation(String operator, CalculationOperation operation){
+    Calculation(String operator, BiFunction<Long, Long, Long> operation){
         this.operator = operator;
         this.operation = operation;
     }
 
-    public static CalculationOperation findOperationByOperator(String findingOperator){
+    public static BiFunction<Long, Long, Long> findOperationByOperator(String findingOperator){
         Calculation foundCalculation =  Stream.of(Calculation.values())
                 .filter(calculation -> {
                     String operator = calculation.operator;
