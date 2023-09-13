@@ -2,12 +2,12 @@ package src.main;
 
 public class CalculatorDriver {
 
-    private static View view;
+    private View view;
 
-    private static final Calculator calculator = new Calculator();
-    private static final Recorder recorder = new Recorder();
+    private final Calculator calculator = new Calculator();
+    private final Recorder recorder = new Recorder();
 
-    private static boolean isRunning = true;
+    private boolean isRunning = true;
 
     public CalculatorDriver(View view){
         this.view = view;
@@ -17,7 +17,9 @@ public class CalculatorDriver {
         while(isRunning){
             try{
                 view.displayMenu();
-                runMenu(view.input());
+                var inputMenuValue = view.input();
+                Menu menu = Menu.findByValue(inputMenuValue);
+                runMenu(menu);
             }
             catch(ArithmeticException e){
                 view.print("[!] 0으로는 나눌 수 없습니다.\n");
@@ -28,21 +30,26 @@ public class CalculatorDriver {
         }
     }
 
-    private void runMenu(String selectedMenu){
+    private void runMenu(Menu selectedMenu){
         switch(selectedMenu){
-            case "1" : Menu.DISPLAY_HISTORY.run(); break;
-            case "2" : Menu.CALCULATE.run(); break;
-            case "3" : Menu.STOP.run(); break;
-            default : throw new IllegalArgumentException("주어진 메뉴에서 선택해주세요");
+            case DISPLAY_HISTORY:
+                displayHistory();
+                break;
+            case CALCULATE:
+                calculate();
+                break;
+            case STOP:
+                stop();
+                break;
         }
     }
 
-    public static void displayHistory(){
+    public void displayHistory(){
         String history = recorder.getHistoryToString();
         view.print(history);
     }
 
-    public static void calculate(){
+    public void calculate(){
         String expression = view.input();
         expression = ExpressionTrimmer.trimExpression(expression);
 
@@ -54,7 +61,7 @@ public class CalculatorDriver {
         recorder.addHistory(expression, result);
     }
 
-    public static void stop(){
+    public void stop(){
         isRunning = false;
     }
 
