@@ -17,13 +17,13 @@ public enum Calculation {
     }
 
     public static CalculationOperation findOperationByOperator(String findingOperator){
-        return Stream.of(Calculation.values())
+        Calculation foundCalculation =  Stream.of(Calculation.values())
                 .filter(calculation -> {
                     String operator = calculation.operator;
                     return operator.equals(findingOperator);
                 })
                 .findFirst()
-                .get()
-                .operation;
+                .orElseThrow(()-> new IllegalArgumentException("적절하지 않은 연산자가 입력되었습니다"));
+        return foundCalculation.operation;
     }
 }
