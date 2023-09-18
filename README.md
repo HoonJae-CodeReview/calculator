@@ -1,4 +1,4 @@
-# code-review
+# [Code Review](https://github.com/HoonJae-CodeReview/calculator/pull/4)
 
 ### 객체지향 생활원칙을 적용하기
 - 규칙 1: 한 메서드에 오직 한 단계의 들여쓰기(indent)만 한다. `도저히 안된다면 최대 2개까지`
